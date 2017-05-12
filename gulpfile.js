@@ -135,8 +135,7 @@ gulp.task('bower', function () {
     .pipe(wiredep({
       directory: /*yeoman.app +*/ 'bower_components',
       ignorePath: '..',
-      dependencies: true     // default: true
-     // devDependencies: true, // default: false
+     // devDependencies: true    // default: false  开发环境注入
     }))
     .pipe(gulp.dest(yeoman.app));
 });
