@@ -5,17 +5,18 @@
     "angular": "1.6.4",
     "angular-ui-router": "^1.0.3",
     "angular-loading-bar": "^0.9.0",
-    "oclazyload": "^1.1.0",
     "jquery-weui": "^1.0.1",
     "angular-local-storage": "https://github.com/grevory/angular-local-storage.git#^0.5.2",
     "weui": "^1.1.2",
     "font-awesome": "^4.7.0",
-    "jquery": "2.1.4"
+    "jquery": "2.1.4",
+    "swiper": "^3.4.2"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "appPath": "app",
   "moduleName": "wxWebApp",
-  "overrides": {}
+  "overrides": {},
+  "resolutions": {
+    "angular": "^1.2.9"
+  }
 }

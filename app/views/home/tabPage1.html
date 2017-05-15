@@ -1,6 +1,168 @@
-<div>
-  <h1>页面1</h1>
+<div ng-controller="Tabpage1Ctrl">
+  <!--轮播-->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="images/1.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/6.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/1.jpg" alt="">
+      </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="weui-grids">
+    <a href="" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <img src="images/Category.png" alt="">
+      </div>
+      <p class="weui-grid__label">
+        全部分类
+      </p>
+    </a>
+    <a href="" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <img src="images/integral.png" alt="">
+      </div>
+      <p class="weui-grid__label">
+        山地车
+      </p>
+    </a>
+    <a href="" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <img src="images/process.png" alt="">
+      </div>
+      <p class="weui-grid__label">
+        公路车
+      </p>
+    </a>
+    <a href="" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <img src="images/security.png" alt="">
+      </div>
+      <p class="weui-grid__label">
+        城市车
+      </p>
+    </a>
+    <a href="" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <img src="images/set.png" alt="">
+      </div>
+      <p class="weui-grid__label">
+        折叠车
+      </p>
+    </a>
+    <a href="" class="weui-grid js_grid">
+      <div class="weui-grid__icon">
+        <img src="images/trade.png" alt="">
+      </div>
+      <p class="weui-grid__label">
+        儿童车
+      </p>
+    </a>
+  </div>
+  <div class="weui-tab">
+    <div class="weui-panel product-panel">
+      <ul class="product-list">
+        <li class="product">
+          <div class="inner">
+            <div class="item-image">
+              <img data-ng-src="/images/1701.jpg" alt="">
+              <p class="item-title">新款山地车阿帕奇 布雷德 原产欧洲</p>
+            </div>
+            <p class="item-price">
+              <span class="price">￥2000</span>
+              <span class="icon"><i class="fa fa-shopping-cart" style="color: red"></i></span>
+            </p>
+          </div>
+        </li>
+        <li class="product">
+          <div class="inner">
+            <div class="item-image">
+              <img data-ng-src="/images/1701.jpg" alt="">
+              <p class="item-title">新款山地车阿帕奇 布雷德 原产欧洲</p>
+            </div>
+            <p class="item-price">
+              <span class="price">￥2000</span>
+              <span class="icon"><i class="fa fa-shopping-cart" style="color: red"></i></span>
+            </p>
+          </div>
+        </li>
+        <li class="product">
+          <div class="inner">
+            <div class="item-image">
+              <img data-ng-src="/images/1701.jpg" alt="">
+              <p class="item-title">新款山地车阿帕奇 布雷德 原产欧洲</p>
+            </div>
+            <p class="item-price">
+              <span class="price">￥2000</span>
+              <span class="icon"><i class="fa fa-shopping-cart" style="color: red"></i></span>
+            </p>
+          </div>
+        </li>
+        <li class="product">
+          <div class="inner">
+            <div class="item-image">
+              <img data-ng-src="/images/1701.jpg" alt="">
+              <p class="item-title">新款山地车阿帕奇 布雷德 原产欧洲</p>
+            </div>
+            <p class="item-price">
+              <span class="price">￥2000</span>
+              <span class="icon"><i class="fa fa-shopping-cart" style="color: red"></i></span>
+            </p>
+          </div>
+        </li>
+        <li class="product">
+          <div class="inner">
+            <div class="item-image">
+              <img data-ng-src="/images/1701.jpg" alt="">
+              <p class="item-title">新款山地车阿帕奇 布雷德 原产欧洲</p>
+            </div>
+            <p class="item-price">
+              <span class="price">￥2000</span>
+              <span class="icon"><i class="fa fa-shopping-cart" style="color: red"></i></span>
+            </p>
+          </div>
+        </li>
+        <li class="product">
+          <div class="inner">
+            <div class="item-image">
+              <img data-ng-src="/images/1701.jpg" alt="">
+              <p class="item-title">新款山地车阿帕奇 布雷德 原产欧洲</p>
+            </div>
+            <p class="item-price">
+              <span class="price">￥2000</span>
+              <span class="icon"><i class="fa fa-shopping-cart" style="color: red"></i></span>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
 </div>
+
+<script>
+  $(document).ready(function () {
+//initialize swiper when document ready
+    var mySwiper = new Swiper ('.swiper-container', {
+// Optional parameters
+      pagination: '.swiper-pagination',
+      speed:400,
+      autoplay:2000,
+      grabCursor : true,
+      setWrapperSize :true,
+      autoplayDisableOnInteraction:false
+//      lazyLoading: true
+
+    })
+  });
+</script>
+
 
 
 

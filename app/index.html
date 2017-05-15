@@ -10,18 +10,19 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.css" />
     <link rel="stylesheet" href="/bower_components/weui/dist/style/weui.css" />
+    <link rel="stylesheet" href="/bower_components/swiper/dist/css/swiper.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <!--<link rel="stylesheet" href="/bower_components/jquery-weui/dist/css/jquery-weui.min.css">-->
-    <link href="https://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/jquery-weui/dist/css/jquery-weui.min.css">
+    <!--<link href="https://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- endbuild -->
   </head>
   <body ng-app="wxWebApp">
 
-    <div class="container">
+    <div class="container" ng-controller="MainCtrl">
     <div ui-view="" class="fade-in-up"></div>
     </div>
 
@@ -32,19 +33,17 @@
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/bower_components/angular-loading-bar/build/loading-bar.js"></script>
-    <script src="/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
     <script src="/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="/bower_components/swiper/dist/js/swiper.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="https://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
-    <!--<script src="https://cdn.bootcss.com/angular-ui-router/0.3.2/angular-ui-router.js"></script>-->
-    <!--<script src="/bower_components/jquery-weui/dist/js/jquery-weui.js"></script>-->
-    <!--<script src="/bower_components/jquery-weui/dist/js/city-picker.min.js"></script>-->
-    <!--<script src="/bower_components/jquery-weui/dist/js/swiper.min.js"></script>-->
+    <script src="/bower_components/jquery-weui/dist/js/jquery-weui.min.js"></script>
+    <script src="scripts/controllers/tabpage1.js"></script>
+    <script src="scripts/controllers/tabpage2.js"></script>
     <!-- endbuild -->
 </body>
 </html>

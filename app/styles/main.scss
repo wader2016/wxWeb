@@ -1,3 +1,15 @@
+.fr{
+  float: right;
+}
+.fl{
+  float: left;
+}
+.product-panel{
+  margin-top: 0;
+}
+.product-panel:after{
+  border-bottom: none;
+}
 .page{
   position: absolute;
   top: 0;
@@ -8,3 +20,76 @@
     height: 100%;
   }
 }
+
+.weui-flex{
+  border-top: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+  color: #444;
+  font-size: 14px;
+  margin: 5px 0;
+  .weui-flex__item{
+    text-align: center;
+    padding: 5px 10px;
+    i{
+      width: 1px;
+      height: 22px;
+      background: #EEEEEE;
+      float: right;
+      margin-right: -10px;
+      vertical-align: middle;
+    }
+  }
+}
+// 修改轮播小圆点样式
+.swiper-pagination-bullet{
+  background: #FFFFFF !important;
+}
+
+.product-list {
+  list-style: none;
+  .product{
+    display: inline-block;
+    border: 1px solid #EEEEEE;
+    margin: 2px 0 2px 2px;
+    width: 48%;
+    .inner{
+      background: #FFFFFF;
+      padding: 5px;
+      .item-image{
+        img{
+          width: 100% ;
+          vertical-align: middle;
+        }
+        .item-title{
+          margin: 10px 0;
+          font-size: 14px;
+        //  text-overflow: ellipsis;
+          //white-space: nowrap;
+          //overflow: hidden;
+        }
+
+      }
+      .item-info{
+        color: #666;
+        margin: 10px 0;
+        font-size: 12px;
+        .free{
+          background-color: red;font-size: 10px;color: white;padding: 2px;border-radius: 10%
+        }
+      }
+      .item-price{
+        margin-top: 10px;
+        color: #ff0000;
+        border-top: 1px dashed #EEEEEE;
+        .price{
+          font-size: 16px;
+        }
+        .icon{
+          float: right;
+        }
+      }
+    }
+  }
+
+}
+

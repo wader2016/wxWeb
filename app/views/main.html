@@ -1,34 +1,40 @@
-<div class="page" ng-controller="MainCtrl">
+<div class="page">
   <div class="page__bd">
     <div class="weui-tab" >
       <div class="weui-tab__bd">
         <div class="weui-tab__bd-item weui-tab__bd-item--active">
           <div ui-view="tabPage"></div>
+          <div style="height: 53px;width: 100%"></div>
         </div>
+
       </div>
 
       <div class="weui-tabbar">
-        <a  class="weui-tabbar__item">
+        <a ng-click="LoadPage('main')" ng-class="{'true':'weui-bar__item--on','false':''}[urlName=='main']" class="weui-tabbar__item">
           <div class="weui-tabbar__icon">
-            <i class="fa fa-home"></i>
+            <!--<i class="fa fa-home"></i>-->
+            <img src="images/store.png" alt="">
           </div>
-          <p class="weui-tabbar__label">微信</p>
+          <p class="weui-tabbar__label">首页</p>
         </a>
-        <a  class="weui-tabbar__item">
+        <a ng-click="LoadPage('tel')" ng-class="{'true':'weui-bar__item--on','false':''}[urlName=='tel']" class="weui-tabbar__item">
           <div class="weui-tabbar__icon">
-            <i class="fa fa-anchor"></i>
+            <!--<i class="fa fa-list-ul"></i>-->
+            <img src="images/Category.png" alt="">
           </div>
-          <p class="weui-tabbar__label">通讯录</p>
+          <p class="weui-tabbar__label">分类</p>
         </a>
-        <a  class="weui-tabbar__item">
+        <a ng-click="LoadPage('find')" ng-class="{'true':'weui-bar__item--on','false':''}[urlName=='find']" class="weui-tabbar__item">
           <div class="weui-tabbar__icon">
-            <i class="fa fa-gear"></i>
+            <!--<i class="fa fa-shopping-cart"></i>-->
+            <img src="images/cart.png" alt="">
           </div>
-          <p class="weui-tabbar__label">发现</p>
+          <p class="weui-tabbar__label">购物车</p>
         </a>
-        <a class="weui-tabbar__item">
+        <a ng-click="LoadPage('me')" ng-class="{'true':'weui-bar__item--on','false':''}[urlName=='me']" class="weui-tabbar__item">
           <div class="weui-tabbar__icon">
-            <i class="fa fa-user-o"></i>
+            <!--<i class="fa fa-user-o"></i>-->
+            <img src="images/account.png" alt="">
           </div>
           <p class="weui-tabbar__label">我</p>
         </a>
