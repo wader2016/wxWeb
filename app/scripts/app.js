@@ -76,6 +76,14 @@ app.config(['$stateProvider', '$urlRouterProvider','$locationProvider', function
         }
       }
     })
+    .state('order',{
+      url:'/me/myorder',
+      templateUrl:'views/myorder.html'
+    })
+    .state('address',{
+      url:'/me/address',
+      templateUrl:'views/address.html'
+    })
 }]);
 
 
