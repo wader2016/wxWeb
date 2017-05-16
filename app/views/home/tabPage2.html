@@ -1,5 +1,5 @@
 <div ng-controller="Tabpage2Ctrl">
-  <div class="weui-search-bar" id="searchBar">
+  <div class="weui-search-bar" id="searchBar" style="background-color: #FFFFFF">
     <form class="weui-search-bar__form">
       <div class="weui-search-bar__box">
         <i class="weui-icon-search"></i>
@@ -11,20 +11,26 @@
         <span>搜索</span>
       </label>
     </form>
-   <div>
-   </div>
     <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
   </div>
   <div class="weui-flex">
     <div class="weui-flex__item">综合<i></i></div>
     <div class="weui-flex__item">销量<i></i></div>
     <div class="weui-flex__item">价格<i></i></div>
-    <div class="weui-flex__item" ng-click="changeTemplate()">筛选
-      <img ng-show="viewList==true" src="images/ViewGallery.png" alt="" style="vertical-align: middle">
+    <div class="weui-flex__item">筛选
+      <img src="images/filter.png" alt="" style="vertical-align: middle">
+      <i></i>
+    </div>
+    <div ng-click="changeTemplate()" style="margin:5px 8px">
+      <img ng-show="viewList==true" src="images/ViewGallery.png" alt="" style="vertical-align: middle;">
       <img ng-show="viewList==false" src="images/Viewlist.png" alt="" style="vertical-align: middle">
     </div>
+
   </div>
   <div ng-include="templateModal"></div>
+
+
+
 </div>
 
 <script type="text/ng-template" id="ImgTemplate.html">

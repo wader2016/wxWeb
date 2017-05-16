@@ -1,3 +1,177 @@
-<div>
-  <h2>详情</h2>
+<div class="weui-tab" ng-controller="ProductdetailCtrl">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="images/1701.jpg" style="width: 100%;" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/1702.jpg" style="width: 100%;" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/1703.jpg"  style="width: 100%;" alt="">
+      </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="content">
+    <div class="content-title">
+      <p class="title">新款山地车阿帕奇 布雷德 原产欧洲</p>
+      <p class="subTitle">UCC公路车自行车 22S 全碳纤维车架&前叉 SHIMANO 105 全套变速套件</p>
+      <h4 class="price">￥2000.00</h4>
+      <div class="weui-cells">
+        <div class="weui-cell" style="font-size: 12px">
+          <div class="weui-cell__bd">
+            <p style="color: #999;">运费:免运费</p>
+          </div>
+          <div class="weui-cell__bd">
+            <p style="color: #999">剩余:100</p>
+          </div>
+          <div class="weui-cell__ft">销量:10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg" style="margin-bottom: 0">
+        <div class="weui-cells">
+          <a class="weui-cell weui-cell_access" class="open-popup" ng-click="SelectColor()">
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>选择：颜色</p>
+            </div>
+            <span class="weui-cell__ft"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg" style="margin-bottom: 0">
+        <div class="weui-cells" style="margin-top: 0">
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>
+                <img src="images/icon-shop.png" class="icon-shop" alt="">
+                店铺
+              </p>
+            </div>
+            <span class="weui-cell__ft">进入店铺</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells" style="margin-top: 0">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <p> <span><img src="images/icon-check.png" alt="">企业认证</span>
+            <span><img src="images/icon-check.png" alt="">担保交易</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-tabbar" style="background-color: #ffffff;position: fixed;">
+    <a class="weui-tabbar__item weui-tabbar__item">
+      <!--<i class="fa fa-navicon weui-tabbar__icon"></i>-->
+      <img src="images/icon-shop.png" alt="" class=" weui-tabbar__icon">
+      <p class="weui-tabbar__label">店铺</p>
+    </a>
+    <a href="#/find" class="weui-tabbar__item">
+            <span style="display: inline-block;position: relative;">
+                <!--<i class="fa fa-shopping-cart weui-tabbar__icon"></i>-->
+                <img src="images/icon-cart.png" alt="" class=" weui-tabbar__icon">
+                <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">1</span>
+            </span>
+      <p class="weui-tabbar__label">购物车</p>
+    </a>
+    <a class="weui-tabbar__item1" data-ng-click="AddCart()">
+      <p>加入购物车</p>
+    </a>
+    <a class="weui-tabbar__item2" data-ng-click="BuyNow()">
+      <p>立即购买</p>
+    </a>
+  </div>
+
+  <div id="SelectColor" class="weui-popup__container popup-bottom">
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal">
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <a href="javascript:;" class="picker-button close-popup">关闭</a>
+          <h1 class="title">选择颜色尺寸</h1>
+        </div>
+      </div>
+      <div class="modal-content">
+        <div class="weui-panel weui-panel_access">
+          <div class="weui-panel__bd">
+            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+              <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb" src="images/1702.jpg">
+              </div>
+              <div class="weui-media-box__bd">
+                <p class="weui-media-box__title" style="font-size: 13px;white-space: normal">新款山地车阿帕奇 布雷德 原产欧洲</p>
+                <p style="color: red;margin-top: 8px">
+                  <span>￥2000</span>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <p style="padding: 0 15px;background: #FFFFFF;">颜色：</p>
+        <div class="weui-panel color-list">
+          <a href="javascript:void(0);" ng-repeat="item in Color track by $index" class="weui-btn weui-btn_mini" ng-class="{'0':'weui-btn_plain-disabled','1':'weui-btn_warn','2':'weui-btn_default'}[item.checked]" data-ng-click="ChoseColor(item)">
+            {{item.Name}}
+          </a>
+        </div>
+        <p style="padding: 0 15px;background: #FFFFFF">尺寸：</p>
+        <div class="weui-panel color-list">
+          <a href="javascript:void(0);" ng-repeat="item in Size track by $index" class="weui-btn weui-btn_mini" ng-class="{'0':'weui-btn_plain-disabled','1':'weui-btn_warn','2':'weui-btn_default'}[item.checked]" data-ng-click="ChoseSize(item)">
+            {{item.Name}}
+          </a>
+        </div>
+        <div class="buy-qty" style="margin-bottom: 53px">
+          <div class="weui-panel color-list">
+            <p>
+              购买数量：<br>
+              剩余 100件
+            </p>
+            <div class="addQty">
+              <span class="addOption" data-ng-click="SubtractQty()">-</span>
+              <input type="text" class="addInput" readonly  data-ng-model="Qty">
+              <span class="addOption" data-ng-click="AddQty()">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="weui-tabbar">
+          <a class="weui-tabbar__item1" data-ng-click="AddCart()">
+            <p>加入购物车</p>
+          </a>
+          <a class="weui-tabbar__item2" data-ng-click="BuyNow()">
+            <p>立即购买</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<script>
+  $(document).ready(function () {
+//initialize swiper when document ready
+    var mySwiper = new Swiper ('.swiper-container', {
+// Optional parameters
+      pagination: '.swiper-pagination',
+      speed:400,
+    //  autoplay:2000,
+      grabCursor : true,
+      setWrapperSize :true,
+      autoplayDisableOnInteraction:false
+//      lazyLoading: true
+
+    })
+
+    $.toast.prototype.defaults.duration = 1000;
+  });
+</script>

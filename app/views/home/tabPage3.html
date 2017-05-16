@@ -1,3 +1,82 @@
-<div>
-  <h1>页面3</h1>
+<div class="weui-tab" data-ng-controller="Tabpage3Ctrl">
+  <div class="weui_tab_bd_item weui_tab_bd_item_active">
+    <div class="weui-panel weui-panel_access" style="margin-bottom: 50px">
+      <div class="weui-panel__hd" style="padding: 0;color: #0B0B0B">
+        <div class="weui-cells weui-cells_checkbox" style="margin-top: 0">
+          <div class="weui-cell weui-check__label">
+            <div class="weui-cell__hd" data-ng-click="SelectAll()" >
+              <input type="checkbox" class="weui-check" name="checkbox1" data-ng-checked="ClickAll">
+              <i class="weui-icon-checked"></i>
+            </div>
+            <div class="weui-cell__bd">
+              <p><img src="images/icon-shop.png" alt="" class="icon-shop"> 店铺</p>
+            </div>
+            <div class="weui-cell__ft">
+              <a data-ng-click="EditCart()" ng-bind="editText"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="weui-panel__bd" style="padding-bottom: 60px">
+        <a ng-repeat="item in ProductList track by $index" href="javascript:void(0);" class="order-box weui-media-box weui-media-box_appmsg">
+          <div class="weui-cells weui-cells_checkbox clearBorder" style="margin-top: 0;background-color: #FFFFFF">
+            <label class="weui-cell weui-check__label"  style="padding: 10px 0">
+              <div class="weui-cell__hd">
+                <input type="checkbox" class="weui-check" name="checkbox1"  data-ng-checked="item.checkItem" data-ng-click="CheckList(item)">
+                <i class="weui-icon-checked"></i>
+              </div>
+            </label>
+          </div>
+          <div class="weui-media-box__hd" style="margin-right: 25px">
+            <img class="weui-media-box__thumb" style="background-color: transparent;min-width: 80px" data-ng-src="images/{{item.ProductId}}.jpg" alt="">
+          </div>
+          <div class="weui-media-box__bd">
+            <div ng-show="Edit==false">
+              <p class="weui-media-box__title" style="font-size: 14px" ng-bind="item.ProductName1"></p>
+              <p class="weui-media-box__desc" ng-bind="item.ProductName2"></p>
+            </div>
+            <div ng-show="Edit" class="edit-input">
+              <span class="addOption" data-ng-click="SubtractQty(item)">-</span>
+              <input type="text" class="addInput" readonly data-ng-model="item.ProductQty">
+              <span class="addOption" data-ng-click="AddQty(item)">+</span>
+            </div>
+            <p style="margin-top: 5px">
+              <span style="float: left;color: red;font-weight: bold">￥{{item.SalesPrice|number:2}}</span>
+              <span ng-show="Edit==false" style="float: right;color: #888">x {{item.ProductQty}}</span>
+            </p>
+
+          </div>
+          <div class="weui-media-box_ft deleteBtn" ng-if="Edit">
+            <p data-ng-click="DeleteProduct(item)">删除</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="weui-tabbar" style="background-color: #ffffff;position: fixed;width: 100%;bottom: 53px">
+      <a class="order-total">
+        <div class="weui-cells weui-cells_checkbox" style="margin-top: 0;float: left">
+          <label class="weui-cell weui-check__label bg-selectAll" for="s14" style="padding: 0 15px" data-ng-click="SelectAll()" >
+            <div class="weui-cell__hd">
+              <input type="checkbox" class="weui-check"  name="checkbox1" id="s14" data-ng-checked="ClickAll">
+              <i class="weui-icon-checked"></i>
+            </div>
+            <div class="weui-cell__bd">
+              <p style="color: #0B0B0B">全选</p>
+            </div>
+          </label>
+        </div>
+        <p>合计: <span style="color: red;font-weight: bold">￥{{TotalPrice|number:2}}</span></p>
+      </a>
+      <a class="weui-tabbar__item2">
+        <p ng-bind="ShowText" data-ng-click="SubmitOrDelete()"></p>
+      </a>
+    </div>
+  </div>
 </div>
+
+<script>
+  $(".weui-panel a").click(function (e) {
+    e.preventDefault();
+  })
+</script>
+

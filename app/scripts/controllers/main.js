@@ -21,6 +21,12 @@ app.controller('MainCtrl', function ($scope,$location,localStorageService) {
       localStorageService.set("urlName",url);
       $location.url(url);
       $scope.urlName = url;
-
     };
+
+    // 加入购物车
+    $scope.AddCart = function () {
+     // $.toast("操作成功",1000);
+
+      $.toast("取消操作", "cancel");
+    }
   });
