@@ -1,3 +1,103 @@
 <div class="weui-tab" ng-controller="MyorderCtrl">
-  <h1>我的订单</h1>
+  <div class="weui-tab">
+    <div class="weui-navbar">
+      <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+        全部订单
+      </a>
+      <a class="weui-navbar__item" href="#tab2">
+        待付款
+      </a>
+      <a class="weui-navbar__item" href="#tab3">
+        待发货
+      </a>
+      <a class="weui-navbar__item" href="#tab4">
+        待收货
+      </a>
+      <a class="weui-navbar__item" href="#tab5">
+        待评价
+      </a>
+    </div>
+    <div class="weui-tab__bd">
+      <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active" style="background: #F8F8F8">
+        <div class="weui-panel weui-panel_access" ng-repeat="item in OrderList">
+          <div class="weui-panel__hd">
+            <p>
+              <img src="images/icon-shop.png" class="order-shop" alt="">
+              <span style="color: #0B0B0B;">{{item.SellerContactInfo}}</span>
+              <span style="float: right;color: red;font-size: 14px">{{item.Status|OrderState}}</span>
+            </p>
+          </div>
+          <div class="weui-panel__bd">
+            <a class="weui-media-box weui-media-box_appmsg" ng-repeat="list in item.SalesOrderLines">
+              <div class="weui-media-box__hd" style="margin-right: 25px">
+                <img class="weui-media-box__thumb" style="background-color: transparent;min-width: 80px" data-ng-src="images/{{list.ProductId}}.jpg" alt="">
+              </div>
+              <div class="weui-media-box__bd">
+                <p class="weui-media-box__title" style="font-size: 14px" ng-bind="list.ProductName1"></p>
+                <p class="weui-media-box__desc" ng-bind="list.ProductName2"></p>
+              </div>
+              <div style="margin-left: 10px">
+                <p style="color: #0B0B0B;">￥{{list.SalesPrice|number:2}}</p>
+                <p style="color: #888;float: right;margin-top: 10px">x {{list.ProductQty}}</p>
+              </div>
+            </a>
+          </div>
+          <div class="weui-panel__ft">
+            <div class="weui-cells" style="margin-top: 0">
+              <div class="weui-cell">
+                <div class="weui-cell__bd">
+                  <p style="float: right;">共{{item.TotalPackageQty}}件商品，合计: <span style="color: red">￥{{item.TotalAmt|number:2}}</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="weui-cells" style="margin-top: 0">
+              <div class="weui-cell" style="padding: 0">
+                <div class="weui-cell__bd">
+                  <a ng-if="item.Status<=2" data-ng-click="ConfirmPay(item)" style="float: right;margin:7px 15px 7px 0" class="payBtn weui-btn weui-btn_mini weui-btn_plain-default">确认付款</a>
+                  <a ng-if="item.Status>2 && item.Status<=256" data-ng-click="ConfirmReceive(item)" style="float: right;margin:7px 15px 7px 0" class="weui-btn weui-btn_mini weui-btn_default">确认收货</a>
+                  <a ng-if="item.Status>256" style="float: right;margin:7px 15px 7px 0" class="weui-btn weui-btn_mini weui-btn_plain-primary ">评价订单</a>
+                  <a style="float: right;margin:7px 15px 7px 0" href="#/me/logistic" class="weui-btn weui-btn_mini weui-btn_plain-primary">查看物流</a>
+                  <!--<a style="float: right;margin:7px 15px 7px 0" class="weui-btn weui-btn_mini weui-btn_default">删除订单</a>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab2" class="weui-tab__bd-item">
+        <div class="no-content">
+          <p>您还没有相关的订单</p>
+          <button class="weui-btn weui-btn_mini weui-btn_plain-primary">去逛逛</button>
+        </div>
+      </div>
+      <div id="tab3" class="weui-tab__bd-item">
+        <div style="height:100%;width: 200px;margin: 150px auto auto auto;text-align: center">
+          <p>您还没有相关的订单</p>
+          <button style="margin-top: 50px" class="weui-btn weui-btn_mini weui-btn_plain-primary">去逛逛</button>
+        </div>
+      </div>
+      <div id="tab4" class="weui-tab__bd-item">
+        <div style="height:100%;width: 200px;margin: 150px auto auto auto;text-align: center">
+          <p>您还没有相关的订单</p>
+          <button style="margin-top: 50px" class="weui-btn weui-btn_mini weui-btn_plain-primary">去逛逛</button>
+        </div>
+      </div>
+      <div id="tab5" class="weui-tab__bd-item">
+        <div style="height:100%;width: 200px;margin: 150px auto auto auto;text-align: center">
+          <p>您还没有相关的订单</p>
+          <button style="margin-top: 50px" class="weui-btn weui-btn_mini weui-btn_plain-primary">去逛逛</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  $(function () {
+
+
+    $(".weui-navbar a").click(function (e) {
+      e.preventDefault();
+    })
+  })
+</script>

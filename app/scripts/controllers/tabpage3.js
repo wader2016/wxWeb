@@ -124,8 +124,8 @@ angular.module('wxWebApp')
       }
       else{           // 结算
         if($scope.SelectProduct.length>0){
-          localStorageService.set("SelectProduct",$scope.SelectProduct);
-          $location.path("/submitOrder.html");
+         // localStorageService.set("SelectProduct",$scope.SelectProduct);
+          $location.path("/find/submitOrder");
         }
       }
     };

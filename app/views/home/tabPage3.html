@@ -1,6 +1,6 @@
 <div class="weui-tab" data-ng-controller="Tabpage3Ctrl">
   <div class="weui_tab_bd_item weui_tab_bd_item_active">
-    <div class="weui-panel weui-panel_access" style="margin-bottom: 50px">
+    <div class="weui-panel weui-panel_access">
       <div class="weui-panel__hd" style="padding: 0;color: #0B0B0B">
         <div class="weui-cells weui-cells_checkbox" style="margin-top: 0">
           <div class="weui-cell weui-check__label">
@@ -9,7 +9,8 @@
               <i class="weui-icon-checked"></i>
             </div>
             <div class="weui-cell__bd">
-              <p><img src="images/icon-shop.png" alt="" class="icon-shop"> 店铺</p>
+              <img src="images/icon-shop.png" style="width:20px;margin-right:5px;display:block;float:left;" alt="">
+              <span style="float: left;">店铺</span>
             </div>
             <div class="weui-cell__ft">
               <a data-ng-click="EditCart()" ng-bind="editText"></a>

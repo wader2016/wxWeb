@@ -1,3 +1,4 @@
+
 .fr{
   float: right;
 }
@@ -7,6 +8,11 @@
 ul{
   list-style: none;
 }
+
+a{
+  color: #444;
+}
+
 .weui-panel:before{
   border-top: none;
 }
@@ -128,6 +134,7 @@ ul{
   float: left;
   margin: 10px 6px;
 }
+
 .weui-btn+.weui-btn{
   margin-top: 10px;
 }
@@ -200,7 +207,7 @@ ul{
   font-size: 16px;
   /*font-weight: bold;*/
 }
-// 重置
+// 重置 popup 弹出
 .weui-cells{
   font-size: 14px;
 }
@@ -216,18 +223,6 @@ ul{
 
 //---------------购物车-----------------
 
-.weui-panel {
-  .nav-pills{
-    display: flex;
-    border-bottom: 1px solid #EEEEEE;
-    li{
-      flex: 1;
-      text-align: center;
-    }
-  }
-}
-
-
 .select-color{
   color: #0B0B0B;
 }
@@ -235,18 +230,26 @@ ul{
   margin-right: 10px;
 }
 
-.nav-pills li a{
-  text-align: center;
-  border-radius: 0;
-  font-size: 15px;
-  color: #0B0B0B;
+.weui-navbar{
+  background-color: #FFFFFF;
 }
-
-.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
-  background-color: #ffffff;
-  color: #EA7A3A;
+.weui-navbar__item{
+  padding: 5px 0;
+  font-size: 13px;
+}
+.weui-navbar__item:after{
+  border-right: none;
+}
+.weui-navbar__item.weui-bar__item--on{
+  color: #EA7A3A !important;
+  background-color: #FFFFFF !important;
   border-bottom: 1px solid;
 }
+
+.order-shop{
+  width:20px;margin-right:5px;display:block;float:left;
+}
+
 .order-box{
   border-bottom: 1px solid #EEEEEE;
 }
@@ -303,13 +306,6 @@ ul{
   float: left;
   margin: 4px;
   flex: 1;
-
-}
-.bg-red{
-  color: red;
-}
-.bg-blue{
-  color: blue;
 }
 
 .weui-picker__content{
@@ -323,5 +319,115 @@ ul{
 //.weui-panel__bd .order-box{
 //  margin-bottom: 10px;
 //}
+
+// timeLine
+.weui-cells:after{
+  border-bottom: none;
+}
+
+.TimeLine dl dd{
+  position: relative;
+  z-index: 200;
+}
+dd{
+  margin-left: 0;
+}
+
+.clearfix:before,.clearfix:after{
+  display: table;
+  content: '';
+}
+.clearfix:after{
+  clear: both;
+}
+
+dl:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50px;
+  z-index: 100;
+  width: 2px;
+  margin-left: -1px;
+  content: '';
+  background-color: #e5e5e5;
+}
+
+.Timeline dl dd .circ {
+  position: absolute;
+  left: 50px;
+  z-index: 200;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  background-color: #ddd;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.Timeline dl dd .active {
+  position: absolute;
+  left: 50px;
+  z-index: 200;
+  width: 16px;
+  height: 16px;
+  margin-left: -10px;
+  background-color: #25AE5F;
+  border: 2px solid #B9E5CB;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.Timeline dl dd.pos-left .events {
+  float: right;
+  width: 80%;
+  margin-right: 4%;
+  position: relative;
+  padding: 2px;
+  margin-bottom: 10px;
+  height: auto;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  color: #999;
+}
+
+.first-line{
+  color: #25AE5F !important;
+}
+.orderDate{
+  margin: 10px 0 5px 0;
+  font-size: 13px;
+}
+.row{
+  margin: 10px -10px 0 -10px;
+}
+.col-md-12{
+  position: relative;padding-left: 15px;padding-right: 15px
+}
+
+// 订单页
+.no-content{
+  height:100%;width: 200px;margin: 150px auto auto auto;text-align: center;
+  .weui-btn{
+    margin-top: 50px;
+  }
+}
+
+.border-divider{
+  border: 1px solid;
+  width: 12px;
+  float: left;
+  margin: 4px;
+  flex: 1;
+
+}
+.bg-red{
+  color: red;
+}
+.bg-blue{
+  color: blue;
+}
+
+
 
 

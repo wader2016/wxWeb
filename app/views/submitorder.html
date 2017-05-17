@@ -1,0 +1,211 @@
+<div class="weui-tab" ng-controller="SubmitorderCtrl" style="background: #F8F8F8">
+  <div class="weui-cells" style="margin-top: 0">
+    <a class="weui-cell weui-cell_access open-popup" ng-if="AddressListInfo.length==0 && MainAddress==null" data-ng-click="AddNewAddress()">
+      <div class="weui-cell__hd"><img src="images/icon-plus.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+      <div class="weui-cell__bd">
+        <p>新增收货地址</p>
+      </div>
+      <div class="weui-cell__ft"></div>
+    </a>
+    <a  class="weui-cell weui-cell_access open-popup" data-target="#UpdateAddress" ng-if="AddressListInfo.length>0">
+      <div class="weui-cell__hd">
+        <img src="images/map.png" alt="">
+      </div>
+      <div class="weui-cell__bd">
+        <label style="color: #0B0B0B">收货人:{{MainAddress.Name}}</label><label style="float: right;color: #0B0B0B" ng-bind="MainAddress.StrExt2.Phone"></label><br>
+        <p style="color: #888;width: 250px;word-wrap: break-word" ng-bind="MainAddress.AddressLine2"></p>
+      </div>
+      <span class="weui-cell__ft"></span>
+    </a>
+    <div style="display: flex">
+      <div class="border-divider" ng-class="{0:'bg-red',1:'bg-blue'}[$index%2]" ng-repeat="item in Arr"></div>
+    </div>
+  </div>
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd"><img src="images/icon-shop.png" class="icon-shop" alt=""> 店铺</div>
+    <div class="weui-panel__bd">
+      <a href="javascript:void(0);" ng-repeat="item in ProductList track by $index" class="weui-media-box weui-media-box_appmsg" style="background-color: #fafafa;border-bottom: 1px solid #EEEEEE">
+        <div class="weui-media-box__hd" style="margin-right: 25px">
+          <img class="weui-media-box__thumb" style="min-width: 80px" data-ng-src="images/{{item.ProductId}}.jpg" alt="">
+        </div>
+        <div class="weui-media-box__bd" style="width: 75%">
+          <h5 class="weui-media-box__title" ng-bind="item.ProductName1"></h5>
+          <p class="weui-media-box__desc" ng-bind="item.ProductName2"></p>
+        </div>
+        <div class="order-detail" style="width: 25%">
+          <p style="color: red;font-weight: bold">￥{{item.SalesPrice|number:2}}</p>
+          <p style="margin: 10px 5px">x {{item.ProductQty}}</p>
+        </div>
+      </a>
+      <div class="weui-panel__ft">
+        <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+          <div class="weui-cell__bd"><label style="color: #0B0B0B">配送方式</label></div>
+          <span class="weui-cell__ft">
+                        ￥0.00 <br>
+                        快递发货
+                    </span>
+        </a>
+      </div>
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">买家留言</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" placeholder="点击给商家留言">
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">合计</label></div>
+          <div class="weui-cell__bd">
+            <span style="float: right;color: red;font-weight: bold">￥{{totalPrice|number:2}}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd weui-cell_primary">
+              <label>优惠</label>
+            </div>
+            <span class="weui-cell__ft" data-toggle="modal" data-target="#useDiscount">使用优惠</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+          <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd"><label>短信通知收件人</label></div>
+            <div class="weui-cell__ft">
+              <input class="weui-switch" type="checkbox" checked>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel" style="margin-bottom: 60px">
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+          <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">
+              <label>商品金额</label> <br>
+              <label>运费</label>
+            </div>
+            <div class="weui-cell__ft">
+              <p>￥{{totalPrice|number:2}}</p>
+              <p>￥0.00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-tabbar" style="background-color: #ffffff;position: fixed;">
+    <a class="order-total">
+      <p>合计: <span style="color: red;font-weight: bold">￥{{totalPrice|number:2}}</span></p>
+    </a>
+    <a class="weui-tabbar__item2" id="submitOrders" data-ng-click="SubmitOrders()">
+      <p>提交订单</p>
+    </a>
+  </div>
+
+  <div id="AddNewAddress" class="weui-popup__container popup-bottom">
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal">
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <a href="javascript:;" class="picker-button" ng-click="CancelAddress()"><i class="weui-icon-cancel"></i></a>
+          <h1 class="title" style="font-size: 14px">新增收货地址</h1>
+        </div>
+      </div>
+      <div class="modal-content">
+        <div class="weui-cells weui-cells_form" style="margin-top: 0">
+          <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">收货人</label></div>
+            <div class="weui-cell__bd">
+              <input class="weui-input" type="text" placeholder="请输入姓名" data-ng-model="AddressInfo.ContactWay.Consignee" required>
+            </div>
+          </div>
+          <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
+            <div class="weui-cell__bd">
+              <input class="weui-input" type="number" maxlength="11" placeholder="手机号或固定电话" data-ng-model="AddressInfo.ContactWay.Phone" required>
+            </div>
+          </div>
+          <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">选择地区</label></div>
+            <div class="weui-cell__bd">
+              <div class="picker-city">
+                <input class="weui-input" id="city-picker" type="text" placeholder="选择所在地区" data-ng-model="address" required>
+              </div>
+            </div>
+          </div>
+          <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">详细地址</label></div>
+            <div class="weui-cell__bd">
+              <input class="weui-input" type="text" placeholder="请输入详细地址" data-ng-model="AddressInfo.AddressLine1" required>
+            </div>
+          </div>
+          <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">邮政编码</label></div>
+            <div class="weui-cell__bd">
+              <input class="weui-input" type="number" placeholder="邮政编码(选填)" data-ng-model="AddressInfo.ZipCode">
+            </div>
+          </div>
+        </div>
+        <a class="weui-btn weui-btn_primary" id="show-toast-text" data-ng-click="SaveAddress()">保存</a>
+        <a class="weui-btn weui-btn_default" ng-if="ShowDeleteBtn" data-ng-click="DeleteAddress()">删除</a>
+      </div>
+    </div>
+  </div>
+  <div id="UpdateAddress" class="weui-popup__container popup-bottom">
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal">
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <a href="javascript:;" class="picker-button close-popup"><i class="weui-icon-cancel"></i></a>
+          <h1 class="title" style="font-size: 14px">修改收货地址</h1>
+        </div>
+      </div>
+      <div class="modal-content">
+        <div class="weui-cells weui-cells_form" style="margin-top: 0">
+          <div class="weui-cell weui-cell_access" ng-repeat="item in AddressListInfo track by $index" style="padding: 10px">
+            <div class="weui-cell__hd">
+              <i data-ng-click="ChangeAddress(item)" ng-class="{0:'weui-icon-success',1:'weui-icon-circle'}[item.flag]"></i>
+            </div>
+            <div class="weui-cell__bd">
+              <label style="color: #0B0B0B">{{item.Name}} , {{item.StrExt2.Phone}}</label>
+              <p style="color: #888;width: 220px;word-wrap: break-word" ng-bind="item.AddressLine2"></p>
+            </div>
+            <div class="weui-cell__ft" data-ng-click="EditAddress(item)">
+            </div>
+          </div>
+          <div class="weui-cell weui-cell_access" style="padding: 10px;">
+            <div class="weui-cell__hd">
+              <img src="images/add.png" alt="" style="width:23px;display:block;margin: auto 5px">
+            </div>
+            <div class="weui-cell__bd" data-ng-click="AddNewAddress()">
+              <label style="margin: 5px 0">新增收货地址</label>
+            </div>
+            <div class="weui-cell__ft"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#city-picker").cityPicker({
+    title: "请选择收货地址"
+  });
+</script>

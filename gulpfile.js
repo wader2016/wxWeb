@@ -16,7 +16,7 @@ var yeoman = {
 // for sources
 var paths = {
   scripts: [yeoman.app + '/scripts/**/*.js'],
-  styles: [yeoman.app + '/styles/**/*.scss'],
+  styles: [yeoman.app + '/styles/**/*.scss',yeoman.app + '/styles/common/*.css'],
   test: ['test/spec/**/*.js'],
   testRequire: [
     'bower_components/angular/angular.js',

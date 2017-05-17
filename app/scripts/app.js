@@ -65,6 +65,10 @@ app.config(['$stateProvider', '$urlRouterProvider','$locationProvider', function
         }
       }
     })
+    .state('submitOrder',{
+      url:'/find/submitOrder',
+      templateUrl:'views/submitorder.html'
+    })
     .state('me',{
       url:'/me',
       views:{
@@ -77,8 +81,12 @@ app.config(['$stateProvider', '$urlRouterProvider','$locationProvider', function
       }
     })
     .state('order',{
-      url:'/me/myorder',
+      url:'/me/myorder/:tab',
       templateUrl:'views/myorder.html'
+    })
+    .state('logistic',{
+      url:'/me/logistic',
+      templateUrl:'views/logistics.html'
     })
     .state('address',{
       url:'/me/address',
