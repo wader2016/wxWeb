@@ -81,24 +81,39 @@ app.run(function ($http,$window,$location,localStorageService) {
   // 授权
   // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5418e098ef4dffb4&redirect_uri=http%3A%2F%2Fwww.itecerp.info&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
 
-  $window.wx.config({
-    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    appId: '123', // 必填，公众号的唯一标识
-    timestamp: '', // 必填，生成签名的时间戳
-    nonceStr: '', // 必填，生成签名的随机串
-    signature: '',// 必填，签名，见附录1
-    jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-  });
 
-  console.log($window.wx.config)
 
-  // $http({
-  //   url:"",
-  //   method:"post",
-  //   data:{url:$location.$$absUrl}
-  // }).then(function (res) {
-  //     $window.wx.config(res.config);
-  // })
+  var url = $location.$$absUrl.split("#")[0];
+
+  var createNonceStr = function() {
+    return Math.random().toString(36).substr(2, 15);
+  };
+
+  // timestamp
+  var createTimeStamp = function () {
+    return parseInt(new Date().getTime() / 1000) + '';
+  };
+
+  console.log({"url":url,"nonceStr":createNonceStr(),"timeStamp":createTimeStamp()});
+
+  $http.post("http://localhost:10030/api/AccessToken",{"url":url,"nonceStr":createNonceStr(),"timeStamp":createTimeStamp()}).then(function (res) {
+    $window.wx.config({
+      debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      appId: 'wx5418e098ef4dffb4', // 必填，公众号的唯一标识
+      timestamp:createTimeStamp(), // 必填，生成签名的时间戳
+      nonceStr: createNonceStr(), // 必填，生成签名的随机串
+      signature: res,// 必填，签名，见附录1
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'hideMenuItems',
+        'chooseImage'
+      ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+  })
 
 
 })
