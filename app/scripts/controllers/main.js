@@ -8,7 +8,7 @@
  * Controller of the wxWebApp
  */
 
-app.controller('MainCtrl', function ($scope,$location,localStorageService) {
+app.controller('MainCtrl', function ($scope,$http,$location,localStorageService) {
 
     if(localStorageService.get("urlName")){
       $scope.urlName = localStorageService.get("urlName");

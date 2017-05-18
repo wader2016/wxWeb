@@ -23,6 +23,88 @@ var app = angular.module('wxWebApp', [
 //   });
 // }])
 
+
+app.run(function ($http,$window,$location,localStorageService) {
+    // 微信授权 获得用户信息
+  // var weixin = {
+  //   config: {
+  //     url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5418e098ef4dffb4&redirect_uri=http%3A%2F%2Fwww.itecerp.info&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
+  //     userInfo:localStorageService.get('MY_USER_INFO'),
+  //     api:'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx5418e098ef4dffb4&secret=fa7cf01a589eb091ff2a52f9534c1051&code='
+  //   },
+  //   getQueryString: function(name) {
+  //     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+  //     var r = window.location.search.substr(1).match(reg);
+  //     if (r!=null) return unescape(r[2]); return null;
+  //   },
+  //   getUser : function(code) {
+  //     $.ajax({
+  //       type: 'get',
+  //       url: "http://www.itecerp.info:8000/api/openId?code="+code,
+  //       cache:false,
+  //       async: false,
+  //       dataType: 'jsonp',
+  //       jsonp: 'callback',
+  //       success: function(json){
+  //         localStorageService.set('MY_USER_INFO',JSON.parse(json));
+  //         return JSON.parse(json);
+  //       },
+  //       error: function(json) {
+  //         console.log(-1);
+  //         console.log("err",json);
+  //       }
+  //     })
+  //   },
+  //   getUserInfo:function(){
+  //
+  //     if(weixin.config.userInfo != null){
+  //       localStorageService.get('MY_USER_INFO');
+  //       return localStorageService.get('MY_USER_INFO');
+  //     }else{
+  //       if(weixin.getQueryString('code') != null){
+  //         weixin.getUser(weixin.getQueryString('code'));
+  //        return localStorageService.get('MY_USER_INFO');
+  //       }else{
+  //         window.location.href = weixin.config.url;
+  //       }
+  //     }
+  //   }
+  // }
+  //
+  // var userInfo = weixin.getUserInfo();
+  // console.log(userInfo);
+  // console.log(userInfo.nickname);
+
+  //获得用户信息
+//  https://api.weixin.qq.com/sns/userinfo?access_token=nlshsMDQ3Rrd5J9kMvZh8XnbQsRnT0jLLxayuKlHXkIS1i_Tb0GrOQX03wlRSNcdd6TxegmDKq0upoTg0PJ7c1hBOngQzwMr6Z_rmd7eXxY&openid=of9k3w0Y4jnx91Bsl0yj6MDlNLs8&lang=zh_CN
+
+  // 授权
+  // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5418e098ef4dffb4&redirect_uri=http%3A%2F%2Fwww.itecerp.info&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
+
+  $window.wx.config({
+    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    appId: '123', // 必填，公众号的唯一标识
+    timestamp: '', // 必填，生成签名的时间戳
+    nonceStr: '', // 必填，生成签名的随机串
+    signature: '',// 必填，签名，见附录1
+    jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+  });
+
+  console.log($window.wx.config)
+
+  // $http({
+  //   url:"",
+  //   method:"post",
+  //   data:{url:$location.$$absUrl}
+  // }).then(function (res) {
+  //     $window.wx.config(res.config);
+  // })
+
+
+})
+
+
+
 /* Setup Rounting For All Pages */
 app.config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider,$locationProvider) {
   $locationProvider.hashPrefix("");
