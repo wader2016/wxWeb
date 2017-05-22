@@ -1,7 +1,8 @@
 <div class="weui-tab" style="background: #F8F8F8" ng-controller="Tabpage4Ctrl">
   <div class="user" style="height: 200px;width: 100%;background: #ff0000">
     <div class="user-img" style="text-align: center;">
-      <img src="images/yeoman.png" style="margin-top: 50px" alt="">
+      <img ng-src="{{userInfo.headimgurl}}" style="margin-top: 50px;width: 100px;" alt="">
+      <p>{{userInfo.nickname}}</p>
     </div>
   </div>
   <div class="weui-panel">
