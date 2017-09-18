@@ -64,13 +64,13 @@ gulp.task('clean:tmp', function (cb) {
   rimraf(yeoman.temp, cb);
 });
 gulp.task('start:client', ['start:server', 'styles', 'lint:scripts'], function () {
-  openURL('http://localhost:9000');
+  openURL('http://localhost:9006');
 });
 gulp.task('start:server', function() {
   $.connect.server({
     root:[yeoman.temp, yeoman.app],
     livereload:true,
-    port: 9000,
+    port: 9006,
     middleware:function(connect, opt){
       return [['/bower_components',
         connect["static"]('./bower_components')]]
