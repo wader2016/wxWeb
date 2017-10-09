@@ -1,7 +1,7 @@
 <div class="weui-tab" style="background: #F8F8F8" ng-controller="Tabpage4Ctrl">
   <div class="user" style="height: 200px;width: 100%;background: #ff0000">
     <div class="user-img" style="text-align: center;">
-      <img ng-src="{{userInfo.headimgurl}}" style="margin-top: 50px;width: 100px;" alt="">
+      <img ng-src="{{userInfo.headimgurl}}" style="margin-top: 50px;width: 100px;border-radius: 50px" alt="">
       <p>{{userInfo.nickname}}</p>
     </div>
   </div>
@@ -46,12 +46,12 @@
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">
         <div class="weui-cells">
-          <a class="weui-cell weui-cell_access" href="javascript:;">
+          <a class="weui-cell weui-cell_access" href="#/me/account">
             <div class="weui-cell__hd">
               <img src="images/integral.png" alt="" style="width:20px;margin-right:5px;display:block">
             </div>
             <div class="weui-cell__bd weui-cell_primary">
-              <p>我的积分</p>
+              <p>个人设置</p>
             </div>
             <span class="weui-cell__ft"></span>
           </a>
@@ -60,7 +60,7 @@
               <img src="images/discount.png" alt="" style="width:20px;margin-right:5px;display:block">
             </div>
             <div class="weui-cell__bd weui-cell_primary">
-              <p>我的优惠券</p>
+              <p>我的账户</p>
             </div>
             <span class="weui-cell__ft"></span>
           </a>

@@ -428,6 +428,117 @@ dl:before {
   color: blue;
 }
 
+/* -----------------------------客户列表-------------------------*/
+#searchLabel{
+  display: none;
+  position: absolute;
+  top: 0;  left:0;
+  width: 100%;
+  border: 1px solid #E8E9F7;
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+}
+
+#searchResult{
+  display: none;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+}
+
+#bg{
+  display: none;
+  position: absolute;
+  top: 0%;  left: 0%;  width: 100%;  height: 100%;
+  background-color: black;
+  z-index:1001;
+  -moz-opacity: 0.6;
+  opacity:.60;
+  filter: alpha(opacity=60);
+}
+
+#filterResult{
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 300px;
+  top:43px;
+  left: 0;
+  z-index: 1006;
+  background-color: white;
+  overflow: auto;
+  .weui-navbar{
+    flex-direction: column;width: 40%;height: 100%;
+    display: inline-block;background-color: #fafafa;
+    .weui-navbar__item{
+    padding: 10px 0;
+    }
+  }
+  .weui-tab__bd {
+    padding-top: 0;width: 60%;float: right;padding-left: 10px;
+    .weui-cells{
+      margin-top: 0;
+    }
+  }
+  .tab-footer {
+    width: 100%;height: 46px;background-color: #f2f4f7;position: absolute;bottom: 0;z-index: 600;
+    .weui-btn{
+      float: right;margin-right: 15px;
+    }
+  }
+}
+
+#filterBg{
+  display: none;
+  position: absolute;
+  top: 46px;  left: 0%;  width: 100%;  height: 100%;
+  background-color: black;
+  z-index:1005;
+  -moz-opacity: 0.6;
+  opacity:.60;
+  filter: alpha(opacity=60);
+}
+
+.dot-top {
+  font-size: 0;
+  line-height: 0;
+  border-width: 4px;
+  border-color: #888;
+  border-top-width: 0;
+  border-style: dashed;
+  border-bottom-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  position: absolute;
+  margin-left: 5px;
+  top: 20px;
+}
+.dot-bottom {
+  font-size: 0;
+  line-height: 0;
+  border-width: 4px;
+  border-color: #888;
+  border-bottom-width: 0;
+  border-style: dashed;
+  border-top-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  position: absolute;
+  margin-left: 5px;
+  top: 20px;
+}
+
+.active{
+  color: #ff6d29;
+}
+
+
 
 
 

@@ -92,7 +92,7 @@ app.controller('MainCtrl', function ($scope,$http,$location,localStorageService,
       wx.ready(function () {
         wx.onMenuShareTimeline({
           title: '测试', // 分享标题
-          link: 'http://www.itecerp.info', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          link: 'http://www.itecerp.cn', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
           imgUrl: '', // 分享图标
           success: function () {
             alert("分享成功");
