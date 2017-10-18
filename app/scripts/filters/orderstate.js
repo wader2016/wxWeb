@@ -40,4 +40,24 @@ angular.module('wxWebApp')
       }
 
     }
-  });
+  })
+  .filter("FilterStaff",function () {
+    return function (input,args) {
+      var output = [];
+      angular.forEach(input,function (item) {
+        if (args == 0){
+          if(item.Email1.indexOf(".cn")>0){
+            output.push(item);
+          }
+        }
+        else {
+          if(item.Email1.indexOf(".com")>0){
+            output.push(item);
+          }
+        }
+
+      })
+
+      return output;
+    }
+  })

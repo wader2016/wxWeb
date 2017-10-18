@@ -1,0 +1,80 @@
+<div class="page" ng-controller="AddrecordCtrl" style="background-color: #f5f5f5">
+  <div class="weui-cells weui-cells_form" style="margin-bottom: 15px">
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">洽谈类型</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input servicePicker" type="text" ng-model="SelectedType"  placeholder="选择类型">
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">洽谈主题</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="text" ng-model="Appointment.Subject" placeholder="输入洽谈主题">
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        <textarea class="weui-textarea" data-ng-model="Appointment.Description" style="font-family: -apple-system-font, sans-serif" placeholder="输入洽谈记录" rows="3"></textarea>
+
+        <div class="weui-textarea-counter"  style="text-align: left;">
+          <img ng-src="{{item}}" ng-repeat="item in ChoseImgSrc" ng-if="ChoseImgSrc.length>0" alt="" style="height: 32px;">
+          <img src="../../images/pic.png" ng-if="ChoseImgSrc.length==0" style="width: 32px" ng-click="ShowPic()">
+          <img src="../../images/addPic.png" ng-if="ChoseImgSrc.length>0" style="width: 32px"  ng-click="ShowPic()">
+        </div>
+      </div>
+    </div>
+    <a class="weui-cell weui-cell_link">
+      <div class="weui-cell__bd" style="font-size: 12px;">
+        <img src="../../images/location.png" alt="">
+        <span ng-bind="Location"></span>
+        <span ng-bind="DateNow"></span>
+      </div>
+    </a>
+  </div>
+  <div class="weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">对方负责人</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="text" ng-model="Appointment.PartnerContact" placeholder="输入对方负责人名称">
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">开始时间</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input timePicker" type="text" ng-model="Appointment.StartTime" placeholder="输入开始时间">
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">所花费用</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="text" ng-model="Appointment.Cost" placeholder="输入所花费用">
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">下次洽谈主题</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input servicePicker" type="text" ng-model="NextSelectedType"  placeholder="选择洽谈主题">
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">下次洽谈时间</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input timePicker" type="text" ng-model="Appointment.NextDate"  placeholder="选择日期">
+      </div>
+    </div>
+  </div>
+  <div class="record-footer" style="position: fixed;bottom: 0;width: 100%;background-color: #FFFFFF">
+    <div class="weui-flex">
+      <div class="weui-flex__item">
+        <a class="itemArea" ng-click="GetBack()">关闭</a>
+      </div>
+      <div class="weui-flex__item">
+        <a class="itemArea" style="background-color: #E64340;color: #ffffff" ng-click="AddAppointment()">确定</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".timePicker").datetimePicker();
+</script>

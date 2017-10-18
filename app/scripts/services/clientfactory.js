@@ -105,6 +105,15 @@ angular.module('wxWebApp')
       return defer.promise;
     }
 
+    factory.GetTencentMapLocation = function (lat,long) {
+      var defer = $q.defer();
+      $http.post(apiUrl+"api/Map/TencentMap",{"latitude":lat,"longitude":long}).then(function (res) {
+        defer.resolve(res);
+      });
+
+      return defer.promise;
+    }
+
     factory.SetPartner = function (filterJson) {
       var defer = $q.defer();
       $http.post(apiUrl+"api/CompanyInfo/SetPartner",filterJson).then(function (res) {

@@ -3,19 +3,17 @@
     <div class="weui-panel__bd" style="background-color: #445c95;color: #ffff">
       <div class="weui-media-box weui-media-box_text" style="border-bottom: 1px solid #556a9e">
         <h3 style="font-size: 24px" class="weui-media-box__title" ng-bind="customerItem.Abbr"></h3>
-        <!--<p class="weui-media-box__desc" style="color: #a6b2ce;margin: 15px 0">最后跟进时间：2017-06-08 14:24</p>-->
-        <p class="weui-media-box__desc" style="color: #b2bdd3;">联系人:<span ng-bind="customerItem.ContactName"></span></p>
-        <a style="float: right;position: absolute;top: 30%;right: 15px" href="#/client/clientDetailInfo"><img src="../../images/more.png" alt=""> </a>
+        <p class="weui-media-box__desc" style="color: #b2bdd3;margin: 10px 0">联系人: <span ng-bind="customerItem.ContactName"></span></p>
+        <p class="weui-media-box__desc" style="color: #b2bdd3;margin: 10px 0">
+          产品版本: <span ng-bind="customerItem.ProductInfo"></span>
+          <span style="margin-left: 15px">人版数: <span ng-bind="customerItem.Licenses"></span></span>
+        </p>
+        <a style="float: right;position: absolute;top: 35%;right: 15px" href="#/client/clientDetailInfo"><img src="../../images/more.png" alt=""> </a>
       </div>
       <div>
-        <!--<div style="display: flex">-->
-        <!--<a style="flex:1;background-color: #576da0;color: #e5ccdc;font-size: 15px;margin: 10px 5px" class="weui-btn">订单0</a>-->
-        <!--<a style="flex:1;background-color: #576da0;color: #e5ccdc;font-size: 15px;margin: 10px 5px" class="weui-btn">产品0</a>-->
-        <!--<a style="flex:1;background-color: #576da0;color: #e5ccdc;font-size: 15px;margin: 10px 5px" class="weui-btn">回款0</a>-->
-        <!--<a style="flex:1;background-color: #576da0;color: #e5ccdc;font-size: 15px;margin: 10px 5px" class="weui-btn">提醒2</a>-->
-        <!--</div>-->
       </div>
     </div>
+
     <div class="weui-panel weui-panel_access" style="margin-bottom: 45px;margin-top: 0">
       <div class="weui-panel__hd">洽谈记录 (<span ng-bind="AppointmentList.length"></span>)</div>
       <div class="weui-panel__bd">
@@ -28,7 +26,7 @@
           </h4>
           <p class="weui-media-box__desc" ng-bind="item.Description"></p>
           <div>
-            <span ng-bind="item.AppointmentType" style="border: 1px solid #eeeeee;padding: 0 5px;display:inline-block;margin-top:15px;margin-bottom:-5px;border-radius: 10px;width: 70px;font-size: 12px;text-align: center;color: #999"></span>
+            <span ng-bind="item.AppointmentType" style="border: 1px solid #eeeeee;padding: 0 10px;display:inline-block;margin-top:15px;margin-bottom:-5px;border-radius: 10px;width: auto;font-size: 12px;text-align: center;color: #999"></span>
             <a ng-href="#/client/recordDetail/{{item.Id}}" style="width: 60px;float: right;margin-top: 18px;font-size: 12px;color: #999;position: relative">
               <img src="../../images/comments.png" alt="">
               <span style="display: inline-block;position: absolute;top: 0;margin-left: 5px;line-height: 16px">沟通</span>
@@ -38,96 +36,10 @@
       </div>
     </div>
     <div class="weui-footer weui-footer_fixed-bottom" style="bottom: 0">
-      <a data-target="#TextRecord" ng-click="OpenPopup()" style="display:block;margin-left: auto;margin-right: auto;padding:10px 14px;box-sizing: border-box;font-size: 16px;text-align: center;border-radius: 0;background-color: #fafafa;color: #000;text-decoration: underline">
+      <a href="#/client/AddRecord" style="display:block;margin-left: auto;margin-right: auto;padding:10px 14px;box-sizing: border-box;font-size: 16px;text-align: center;border-radius: 0;background-color: #fafafa;color: #000;text-decoration: underline">
         添加洽谈记录 +</a>
-    </div>
-    <div id="TextRecord" class="weui-popup__container">
-      <div class="weui-popup__overlay"></div>
-      <div class="weui-popup__modal">
-        <div class="weui-cells" style="margin-bottom: 15px">
-          <div class="weui-cell">
-            <div class="weui-cell__bd">
-              <p style="text-align: center;color: #000">
-                <a style="float: left;color: red;text-decoration: underline" class="close-popup">取消</a>
-                添加洽谈记录
-                <a style="float: right;color: red;text-decoration: underline" class="close-popup" ng-click="AddAppointment()">完成</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="weui-cells weui-cells_form" style="margin-bottom: 15px">
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">洽谈类型</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input servicePicker" type="text" ng-model="SelectedType"  placeholder="选择类型">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">洽谈主题</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="Appointment.Subject" placeholder="输入洽谈主题">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__bd">
-              <textarea class="weui-textarea" data-ng-model="Appointment.Description" style="font-family: -apple-system-font, sans-serif" placeholder="输入洽谈记录" rows="3"></textarea>
-
-              <div class="weui-textarea-counter"  style="text-align: left;">
-                <img ng-src="{{item}}" ng-repeat="item in ChoseImgSrc" ng-if="ChoseImgSrc.length>0" alt="" style="height: 32px;">
-                <img src="../../images/pic.png" ng-if="ChoseImgSrc.length==0" style="width: 32px" ng-click="ShowPic()">
-                <img src="../../images/addPic.png" ng-if="ChoseImgSrc.length>0" style="width: 32px"  ng-click="ShowPic()">
-              </div>
-            </div>
-          </div>
-          <a class="weui-cell weui-cell_link">
-            <div class="weui-cell__bd" style="font-size: 12px;">
-              <img src="../../images/location.png" alt="">
-              <span ng-bind="Location"></span>
-              <span ng-bind="DateNow"></span>
-            </div>
-          </a>
-        </div>
-        <div class="weui-cells">
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">对方负责人</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="Appointment.PartnerContact" placeholder="输入对方负责人名称">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">开始时间</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input timePicker" type="text" ng-model="Appointment.StartTime" placeholder="输入开始时间">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">所花费用</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="Appointment.Cost" placeholder="输入所花费用">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">下次洽谈主题</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input servicePicker" type="text" ng-model="NextSelectedType"  placeholder="选择洽谈主题">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">下次洽谈时间</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input timePicker" type="text" ng-model="Appointment.NextDate"  placeholder="选择日期">
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
   </div>
 </div>
 
-
-<script>
-   $(".timePicker").datetimePicker();
-
-
-</script>

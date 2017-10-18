@@ -5,6 +5,8 @@ var openURL = require('open');
 var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var wiredep = require('wiredep').stream;
+var rev = require('gulp-rev');
+var revReplace = require('gulp-rev-replace');
 var runSequence = require('run-sequence');
 //app directory structor
 var yeoman = {
@@ -157,6 +159,8 @@ gulp.task('client:build', ['bower', 'html', 'styles'], function () {
     .pipe(cssFilter)
     .pipe($.minifyCss({cache: true}))
     .pipe(cssFilter.restore())
+    // .pipe(rev())
+    // .pipe(revReplace())
     .pipe(gulp.dest(yeoman.dist));
 });
 gulp.task('html', function () {

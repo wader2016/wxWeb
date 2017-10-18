@@ -1,335 +1,270 @@
 <div class="page" ng-controller="ClientCtrl">
     <div class="weui-flex" style="background-color: #fafafa;margin: 0">
-      <div class="weui-flex__item" style="padding: 10px 0" ng-click="Search()"><span class="weui-icon-search"></span>搜索<i></i></div>
-      <div class="weui-flex__item" ng-class="{true:'active',false:''}[filterAction]" style="padding: 10px 0" ng-click="Filter()">筛选 <span class="dot-bottom" ng-class="{true:'dot-top',false:'dot-bottom'}[filterAction]"></span><i></i></div>
-      <div class="weui-flex__item" style="padding: 10px 0">排序 <span class="dot-bottom"></span><i></i></div>
-      <div id="filterResult">
-        <div class="weui-tab">
-          <div class="weui-navbar">
-            <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
-              所属项目
-            </a>
-            <a class="weui-navbar__item" href="#tab2">
-              产品版本
-            </a>
-            <a class="weui-navbar__item" href="#tab3">
-              业务人员
-            </a>
-            <a class="weui-navbar__item" href="#tab4">
-              服务人员
-            </a>
+      <a class="weui-flex__item filterItem" href="#tab11" data-toggle="tab" style="padding: 10px 0" ng-click="Search()">客户
+        <img class="down" src="../../images/down.png" alt="">
+        <img class="up" src="../../images/up.png"  alt=""><i class="line"></i></a>
+      <a class="weui-flex__item filterItem" href="#tab21" data-toggle="tab" style="padding: 10px 0" ng-click="Filter()">筛选
+        <img class="down" src="../../images/down.png" alt="">
+        <img class="up" src="../../images/up.png"  alt=""><i class="line"></i></a>
+      <a class="weui-flex__item filterItem" href="#tab31" data-toggle="tab" style="padding: 10px 0">更多
+        <img class="down" src="../../images/down.png" alt="">
+        <img class="up" src="../../images/up.png"   alt=""><i class="line"></i></a>
+      <a class="weui-flex__item filterItem" href="#tab41" data-toggle="tab" style="padding: 10px 0">排序
+        <img class="down" src="../../images/down.png" alt="">
+        <img class="up" src="../../images/up.png"   alt="">
+        <i class="line"></i>
+      </a>
+      <div class="weui-flex__item filterBtn" href="#tab51" style="padding: 10px 0">
+        <a class="weui-icon-add" href="#/client/addClient"></a>
+        <i class="weui-icon-search searchBtn"></i>
+      </div>
+
+    </div>
+  <div id="tab11">
+    <div class="tab_left">
+      <p class="customer" ng-class="{true:'open',false:''}[customerOpen]" ng-click="CustomerFilter()">不限客户</p>
+      <p class="customer" ng-class="{true:'',false:'open'}[customerOpen]" ng-click="CustomerFilter()">常联系客户</p>
+      <p class="customer-last">最近跟进</p>
+      <ul class="customer-list">
+        <li class="customer-listItem">全茂软件</li>
+        <li class="customer-listItem">钜茂</li>
+        <li class="customer-listItem">勤益科大</li>
+        <li class="customer-listItem">雙餘實業</li>
+        <li class="customer-listItem">廣州環球</li>
+      </ul>
+    </div>
+    <div class="tab_right" style="width: 60%;height:100%;float: left;display: inline-block;box-shadow: -3px 0 10px #e2e2e2;overflow-y: scroll">
+      <div style="padding: 15px 0 15px 15px;border-bottom: 1px solid #eeeeee">
+        <img src="../../images/hot.png" alt="" style="vertical-align: bottom;padding-right: 10px;">常联系客户
+      </div>
+      <ul>
+        <li ng-repeat="item in CustomerList" ng-bind="item.Abbr" style="text-align: left;padding: 15px 0 15px 15px;border-bottom: 1px solid #eeeeee"></li>
+      </ul>
+
+    </div>
+    <div class="tab-footer" style="box-shadow:0 0 10px #e4e4e4;position: fixed;bottom: 0;height: 35px;width:100%;background-color: #ffffff;text-align: center">
+      <img src="../../images/less.png" alt="" ng-click="HideList('#tab11')">
+    </div>
+
+
+  </div>
+  <div id="tab21">
+    <div class="weui-tab">
+      <div class="weui-navbar">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+          产品版本
+        </a>
+        <a class="weui-navbar__item" href="#tab2">
+          业务人员
+        </a>
+        <a class="weui-navbar__item" href="#tab3">
+          服务人员
+        </a>
+      </div>
+      <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+          <div class="weui-cells weui-cells_checkbox">
+            <label class="weui-cell weui-check__label" for="s14">
+              <div class="weui-cell__bd">
+                <p>I-完美版</p>
+              </div>
+              <div class="weui-cell__ft">
+                <input type="checkbox" class="weui-check" name="checkbox1" id="s14" checked="checked">
+                <i class="weui-icon-checked"></i>
+              </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="s15">
+              <div class="weui-cell__bd">
+                <p>T-旗舰版</p>
+              </div>
+              <div class="weui-cell__ft">
+                <input type="checkbox" name="checkbox1" class="weui-check" id="s15">
+                <i class="weui-icon-checked"></i>
+              </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="s16">
+              <div class="weui-cell__bd">
+                <p>E-企业版</p>
+              </div>
+              <div class="weui-cell__ft">
+                <input type="checkbox" name="checkbox1" class="weui-check" id="s16">
+                <i class="weui-icon-checked"></i>
+              </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="s17">
+              <div class="weui-cell__bd">
+                <p>C-经典版</p>
+              </div>
+              <div class="weui-cell__ft">
+                <input type="checkbox" name="checkbox1" class="weui-check" id="s17">
+                <i class="weui-icon-checked"></i>
+              </div>
+            </label>
           </div>
-          <div class="weui-tab__bd">
-            <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-              <div class="weui-cells weui-cells_checkbox">
-                <label class="weui-cell weui-check__label" for="s11">
-                  <div class="weui-cell__bd">
-                    <p>ITEC ERP</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" class="weui-check" name="checkbox1" id="s11" checked="checked">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s12">
-                  <div class="weui-cell__bd">
-                    <p>ITEC Workshop</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s12">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s13">
-                  <div class="weui-cell__bd">
-                    <p>移动端</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s13">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+          <div class="weui-cells weui-cells_checkbox">
+            <label class="weui-cell weui-check__label" ng-repeat="item in StaffInfo|FilterStaff:0" for="{{item.Id}}">
+              <div class="weui-cell__bd">
+                <p ng-bind="item.Nick"></p>
               </div>
-            </div>
-            <div id="tab2" class="weui-tab__bd-item">
-              <div class="weui-cells weui-cells_checkbox">
-                <label class="weui-cell weui-check__label" for="s14">
-                  <div class="weui-cell__bd">
-                    <p>I-完美版</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" class="weui-check" name="checkbox1" id="s14" checked="checked">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s15">
-                  <div class="weui-cell__bd">
-                    <p>T-旗舰版</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s15">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s16">
-                  <div class="weui-cell__bd">
-                    <p>E-企业版</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s16">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s17">
-                  <div class="weui-cell__bd">
-                    <p>C-经典版</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s17">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
+              <div class="weui-cell__ft">
+                <input type="checkbox" name="checkbox1" class="weui-check" id="{{item.Id}}">
+                <i class="weui-icon-checked"></i>
               </div>
-            </div>
-            <div id="tab3" class="weui-tab__bd-item">
-              <div class="weui-cells weui-cells_checkbox">
-                <label class="weui-cell weui-check__label" for="s18">
-                  <div class="weui-cell__bd">
-                    <p>Joe</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s18">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s19">
-                  <div class="weui-cell__bd">
-                    <p>Blue</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s19">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s20">
-                  <div class="weui-cell__bd">
-                    <p>Lisa</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s20">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-              </div>
-            </div>
-            <div id="tab4" class="weui-tab__bd-item">
-              <div class="weui-cells weui-cells_checkbox">
-                <label class="weui-cell weui-check__label" for="s21">
-                  <div class="weui-cell__bd">
-                    <p>Susan</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s21">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s22">
-                  <div class="weui-cell__bd">
-                    <p>Sunny</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s22">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s23">
-                  <div class="weui-cell__bd">
-                    <p>Roland</p>
-                  </div>
-                  <div class="weui-cell__ft">
-                    <input type="checkbox" name="checkbox1" class="weui-check" id="s23">
-                    <i class="weui-icon-checked"></i>
-                  </div>
-                </label>
-              </div>
-            </div>
+            </label>
           </div>
-          <div class="tab-footer">
-            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" ng-click="Confirm()">确定</a>
+        </div>
+        <div id="tab3" class="weui-tab__bd-item">
+          <div class="weui-cells weui-cells_checkbox">
+            <label class="weui-cell weui-check__label" ng-repeat="item in StaffInfo |FilterStaff:1" for="{{item.Id}}">
+              <div class="weui-cell__bd">
+                <p ng-bind="item.Nick"></p>
+              </div>
+              <div class="weui-cell__ft">
+                <input type="checkbox" name="checkbox1" class="weui-check" id="{{item.Id}}">
+                <i class="weui-icon-checked"></i>
+              </div>
+            </label>
           </div>
         </div>
       </div>
-      <div id="filterBg"></div>
-    </div>
-    <div id="searchLabel">
-      <div class="weui-search-bar" id="searchBar" style="background-color: #fafafa">
-        <form class="weui-search-bar__form">
-          <div class="weui-search-bar__box">
-            <!--<i class="weui-icon-search"></i>-->
-            <input type="search"  ng-keyup="SearchText($event)" class="weui-search-bar__input" id="searchInput" placeholder="输入客户名称/编号">
-            <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
-          </div>
-        </form>
-        <div class="weui-search-bar__cancel-btn" ng-click="CancelSearch()" id="searchCancel" style="display: block;color: #999">取消</div>
+      <div class="tab-footer">
+        <img src="../../images/less.png" alt="" ng-click="HideList('#tab21')">
       </div>
     </div>
-    <div id="searchResult">
-      <div class="weui-cells" style="margin-top: 0">
-        <a class="weui-cell weui-cell_access" ng-click="CustomerDetail(item)" ng-repeat="item in SearchList">
-          <div class="weui-cell__bd">
-            <p ng-bind="item.Abbr"></p>
+  </div>
+  <div id="tab31">
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd">自定义人版数</div>
+      <div class="weui-panel__bd">
+        <div class="weui-flex">
+          <div class="weui-flex__item">
+            <input type="text" class="weui-input">
           </div>
-          <div class="weui-cell__ft">
+          <span style="position: absolute;left: 33%;top: 70px;">-</span>
+          <div class="weui-flex__item">
+            <input type="text" class="weui-input">
           </div>
-        </a>
+          <div class="weui-flex__item">
+            <a href="#" class="weui-btn weui-btn_warn" style="line-height: 40px">确定</a>
+          </div>
+        </div>
+
       </div>
     </div>
-    <div id="bg"></div>
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+       <div class="weui-flex">
+         <div class="weui-flex__item on">
+           <a class="itemArea">不限</a>
+         </div>
+         <div class="weui-flex__item">
+           <a class="itemArea">10人以下</a>
+         </div>
+         <div class="weui-flex__item">
+           <a class="itemArea">10-20人</a>
+         </div>
+       </div>
+       <div class="weui-flex">
+          <div class="weui-flex__item">
+            <a class="itemArea">20-30人</a>
+          </div>
+          <div class="weui-flex__item">
+            <a class="itemArea">30-40人</a>
+          </div>
+          <div class="weui-flex__item">
+            <a class="itemArea">40-50人</a>
+          </div>
+        </div>
+       <div class="weui-flex">
+          <div class="weui-flex__item">
+            <a class="itemArea">50-60人</a>
+          </div>
+          <div class="weui-flex__item">
+            <a class="itemArea">60-70人</a>
+          </div>
+          <div class="weui-flex__item">
+            <a class="itemArea">80人以上</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-footer">
+      <img src="../../images/less.png" alt="" ng-click="HideList('#tab31')">
+    </div>
+  </div>
+  <div id="tab41">
+    <div class="weui-cells weui-cells_radio">
+      <label class="weui-cell weui-check__label" for="x11">
+        <div class="weui-cell__bd">
+          <p>默认排序</p>
+        </div>
+        <div class="weui-cell__ft">
+          <input type="radio" class="weui-check" name="radio1" id="x11" checked="checked">
+          <span class="weui-icon-checked"></span>
+        </div>
+      </label>
+      <label class="weui-cell weui-check__label" for="x15">
+        <div class="weui-cell__bd">
+          <p>最近创建</p>
+        </div>
+        <div class="weui-cell__ft">
+          <input type="radio" name="radio1" class="weui-check" id="x15">
+          <span class="weui-icon-checked"></span>
+        </div>
+      </label>
+      <label class="weui-cell weui-check__label" for="x12">
+        <div class="weui-cell__bd">
+          <p>最近联系</p>
+        </div>
+        <div class="weui-cell__ft">
+          <input type="radio" name="radio1" class="weui-check" id="x12">
+          <span class="weui-icon-checked"></span>
+        </div>
+      </label>
+      <label class="weui-cell weui-check__label" for="x13">
+        <div class="weui-cell__bd">
+          <p>离我最近</p>
+        </div>
+        <div class="weui-cell__ft">
+          <input type="radio" name="radio1" class="weui-check" id="x13">
+          <span class="weui-icon-checked"></span>
+        </div>
+      </label>
+      <label class="weui-cell weui-check__label" for="x14">
+        <div class="weui-cell__bd">
+          <p>离我最远</p>
+        </div>
+        <div class="weui-cell__ft">
+          <input type="radio" name="radio1" class="weui-check" id="x14">
+          <span class="weui-icon-checked"></span>
+        </div>
+      </label>
+      <div class="tab-footer">
+        <img src="../../images/less.png" alt="" ng-click="HideList('#tab41')">
+      </div>
+    </div>
+  </div>
+  <div id="tab51">
+
+  </div>
+  <div id="filterBg"></div>
 
   <div class="weui-cells" id="CustomerList" style="margin-top: 0">
     <a class="weui-cell weui-cell_access" ng-repeat="item in CustomerList" ng-click="CustomerDetail(item)">
       <div class="weui-cell__bd">
-        <h3 ng-bind="item.Abbr"></h3>
+        <p ng-bind="item.Abbr" style="font-size: 1.17em"></p>
         <span style="color: #888;font-size: 12px">
           <span ng-bind="item.Code"></span>
           <span ng-bind="item.ContactName"></span>
         </span>
       </div>
-      <div class="weui-cell__ft"></div>
+      <div class="weui-cell__ft" ng-bind="item.ModifiedDate"></div>
     </a>
-    <!--<div class="weui-loadmore">-->
-      <!--<i class="weui-loading"></i>-->
-      <!--<span class="weui-loadmore__tips">正在加载</span>-->
-    <!--</div>-->
-  </div>
-  <a class="open-popup" data-target="#AddClient" style="display: block;width: 60px;height: 60px;border-radius: 30px;z-index:200;background-color: #1AAD19;text-align: center;position: fixed;bottom: 20px;right: 20px">
-    <div style="padding: 15px 0;color: #ffffff">新增</div>
-  </a>
-
-  <div id="AddClient" class="weui-popup__container">
-    <div class="weui-popup__overlay"></div>
-    <div class="weui-popup__modal">
-      <div class="page">
-        <div class="weui-cells" style="margin-bottom: 15px">
-          <div class="weui-cell">
-            <div class="weui-cell__bd">
-              <p style="text-align: center;color: #000">
-                <a style="float: left;color: red;text-decoration: underline" class="close-popup">取消</a>
-                新增客户
-                <a style="float: right;color: red;text-decoration: underline" ng-click="SavePartner()" class="close-popup">完成</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="weui-cells__title" style="font-size: 12px">客户信息</div>
-        <div class="weui-cells weui-cells_form">
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">全称</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="PartnerInfo.OrganizationName"  placeholder="输入客户全称">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">编号</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="PartnerInfo.OrganizationCode"  placeholder="输入客户编号">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">简称</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="PartnerInfo.OrganizationAbbr" placeholder="输入客户简称">
-            </div>
-          </div>
-        </div>
-        <div class="weui-cells__title" style="font-size: 12px">联络人信息</div>
-        <div class="weui-cells weui-cells_form">
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="PartnerInfo.ContactName"  placeholder="输入联络人姓名">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">编号</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="PartnerInfo.ContactCode"  placeholder="输入联络人编号">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">手机</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="PartnerInfo.TelNumber"  placeholder="输入联络人手机">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">邮箱</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" ng-model="PartnerInfo.Email" placeholder="输入联络人邮箱">
-            </div>
-          </div>
-        </div>
-        <div class="weui-cells__title" style="font-size: 12px">产品信息</div>
-        <div class="weui-cells weui-cells_form">
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">负责业务</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input businessPicker" ng-model="PartnerInfo.BusinessStaff" type="text" placeholder="选择业务人员">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">负责服务</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input businessPicker" ng-model="PartnerInfo.ServiceStaff" type="text"  placeholder="选择服务人员">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">产品版本</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" id="productPicker" ng-model="PartnerInfo.ProductInfo"  placeholder="选择产品版本">
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">人版数</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="number" ng-model="PartnerInfo.Licenses" placeholder="输入人版数">
-            </div>
-          </div>
-
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">截止日期</label></div>
-            <div class="weui-cell__bd">
-              <input class="weui-input" type="text" id="timePicker" ng-model="PartnerInfo.ContractDeadline" placeholder="选择截止日期">
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
   </div>
 
 </div>
 
-<script>
-
-  $("#productPicker").picker({
-    title: "请选择产品版本",
-    cols: [
-      {
-        textAlign: 'center',
-        values: ['I-完美版', 'T-企业版', 'E-企业版', 'C-经典版']
-      }
-    ]
-  });
-
-  $("#timePicker").datetimePicker();
-
-  $("#filterResult a").click(function (e) {
-    e.preventDefault();
-  })
-
-
-
-</script>
 
 

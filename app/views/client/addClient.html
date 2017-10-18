@@ -1,22 +1,22 @@
-<div class="page" ng-controller="CilentinfoCtrl" style="background-color: #fafafa;">
+<div class="page" style="background-color: #f5f5f5" ng-controller="AddclientCtrl">
   <div class="weui-cells__title" style="font-size: 14px;color: #444"><i style="width: 1px;height:14px;margin-right: 6px;border-left: 2px solid #fd521d"></i>客户信息</div>
   <div class="weui-cells weui-cells_form">
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">全称</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" ng-model="customerItem.Name"  placeholder="输入客户全称">
+        <input class="weui-input" type="text" ng-model="PartnerInfo.OrganizationName"  placeholder="输入客户全称">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">编号</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" ng-model="customerItem.Code"  placeholder="输入客户编号">
+        <input class="weui-input" type="text" ng-model="PartnerInfo.OrganizationCode"  placeholder="输入客户编号">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">简称</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" ng-model="customerItem.Abbr" placeholder="输入客户简称">
+        <input class="weui-input" type="text" ng-model="PartnerInfo.OrganizationAbbr" placeholder="输入客户简称">
       </div>
     </div>
   </div>
@@ -25,72 +25,85 @@
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" ng-model="customerItem.ContactName"  placeholder="输入联络人姓名">
+        <input class="weui-input" type="text" ng-model="PartnerInfo.ContactName"  placeholder="输入联络人姓名">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">编号</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" ng-model="customerItem.ContactCode"  placeholder="输入联络人编号">
+        <input class="weui-input" type="text" ng-model="PartnerInfo.ContactCode"  placeholder="输入联络人编号">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">手机</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" ng-model="customerItem.TelNumber"  placeholder="输入联络人手机">
+        <input class="weui-input" type="text" ng-model="PartnerInfo.TelNumber"  placeholder="输入联络人手机">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">邮箱</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" ng-model="customerItem.Email" readonly placeholder="输入联络人邮箱">
+        <input class="weui-input" type="text" ng-model="PartnerInfo.Email" placeholder="输入联络人邮箱">
       </div>
     </div>
   </div>
   <div class="weui-cells__title" style="font-size: 14px;color: #444"><i style="width: 1px;height:14px;margin-right: 6px;border-left: 2px solid #fd521d"></i>产品信息</div>
-  <div class="weui-cells weui-cells_form" style="margin-bottom: 65px">
+  <div class="weui-cells weui-cells_form" style="margin-bottom: 50px">
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">负责业务</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input businessPicker" ng-model="customerItem.BusinessStaff" type="text" placeholder="选择业务人员">
+        <input class="weui-input businessPicker" ng-model="PartnerInfo.BusinessStaff" type="text" placeholder="选择业务人员">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">负责服务</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input businessPicker" ng-model="customerItem.ServiceStaff" type="text"  placeholder="选择服务人员">
+        <input class="weui-input businessPicker" ng-model="PartnerInfo.ServiceStaff" type="text"  placeholder="选择服务人员">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">产品版本</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" id="productPicker" ng-model="customerItem.ProductInfo"  placeholder="选择产品版本">
+        <input class="weui-input" type="text" id="productPicker" ng-model="PartnerInfo.ProductInfo"  placeholder="选择产品版本">
       </div>
     </div>
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">人版数</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" ng-model="customerItem.Licenses" placeholder="输入人版数">
+        <input class="weui-input" type="number" ng-model="PartnerInfo.Licenses" placeholder="输入人版数">
       </div>
     </div>
 
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">截止日期</label></div>
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" id="timePicker" ng-model="customerItem.ContractDeadline" placeholder="选择截止日期">
+        <input class="weui-input" type="text" id="timePicker" ng-model="PartnerInfo.ContractDeadline" placeholder="选择截止日期">
       </div>
     </div>
 
   </div>
-  <div class="record-footer" style="position: fixed;bottom: 0;width: 100%;background-color: #FFFFFF;z-index: 1500">
-    <div class="weui-flex">
-      <div class="weui-flex__item">
-        <a class="itemArea" ng-click="GetBack()">返回</a>
+  <div class="record-footer" style="position: fixed;bottom: 0;width: 100%;background-color: #FFFFFF;z-index: 1500;">
+    <div class="weui-flex" style="margin: 0">
+      <div class="weui-flex__item" style="padding: 0">
+        <a class="itemArea" ng-click="GetBack()" style="height: 45px;cursor: pointer">关闭</a>
       </div>
-      <div class="weui-flex__item">
-        <a class="itemArea" ng-click="UpdateClientInfo()" style="background-color: #E64340;color: #ffffff">确定</a>
+      <div class="weui-flex__item" style="padding: 0">
+        <a class="itemArea" style="background-color: #E64340;color: #ffffff;height: 45px" ng-click="AddAppointment()">确定</a>
       </div>
     </div>
   </div>
-
 </div>
+
+<script>
+  $("#productPicker").picker({
+    title: "请选择产品版本",
+    cols: [
+      {
+        textAlign: 'center',
+        values: ['I-完美版', 'T-企业版', 'E-企业版', 'C-经典版']
+      }
+    ]
+  });
+
+  $("#timePicker").datetimePicker();
+</script>

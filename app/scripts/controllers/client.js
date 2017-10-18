@@ -10,55 +10,58 @@
 angular.module('wxWebApp')
   .controller('ClientCtrl', function ($scope,ClientFactory,$location,localStorageService,$timeout) {
 
-    $scope.Search = function () {
-      // 打开搜索背景
-      $("#searchLabel").css({"display":"block"});
-      $("#bg").css({"display":"block"});
-      // 关闭筛选背景
-      $("#filterResult").css({"display":"none"});
-      $("#filterBg").css({"display":"none"});
-      $scope.filterAction = false;
-      // 打开时禁止滚动
-      $("body").css({"position":"fixed","width":"100%","height":"100%"});
-    }
-
-    $scope.SearchText = function (event) {
-      GetDataBySearching(0,event.target.value)
-      $("#searchResult").css({"display":"block"});
-      $("#searchResult").height(window.screen.height-46);
-
-    }
-
-    $scope.CancelSearch = function () {
-      $("#searchLabel").css({"display":"none"});
-      $("#bg").css({"display":"none"});
-      $("#searchResult").css({"display":"none"});
-      $("body").css({"position":"static","width":"100%","height":"100%"});
-
-    }
-
-    $scope.filterAction = false;
-    $scope.Filter = function () {
-      $scope.filterAction = !$scope.filterAction;
-      if($scope.filterAction){
-        $("#filterResult").css({"display":"block"});
-        $("#filterBg").css({"display":"block"});
-        $("body").css({"position":"fixed","width":"100%","height":"100%"});
-      }
-      else {
-        $("#filterResult").css({"display":"none"});
+    $(".filterItem").click(function (e) {
+      e.preventDefault();
+      if($(this).hasClass('active')){
+        $(this).removeClass('active');
+        $($(this).attr("href")).removeClass('show');
         $("#filterBg").css({"display":"none"});
         $("body").css({"position":"static","width":"100%","height":"100%"});
       }
+      else {
+        $(this).addClass('active').siblings().removeClass('active');
+        $($(this).attr("href")).addClass("show").siblings().removeClass('show');
+        $("#filterBg").css({"display":"block"});
+        $("body").css({"position":"fixed","width":"100%","height":"100%"});
 
-    }
+      }
+    });
 
-    $scope.Confirm = function () {
-      $scope.filterAction = false;
-      $("#filterResult").css({"display":"none"});
+    $(".searchBtn").click(function () {
+      if($("#tab51").hasClass('show')){
+        $("#tab51").removeClass('show');
+        $("#filterBg").css({"display":"none"});
+        $("body").css({"position":"static","width":"100%","height":"100%"});
+      }
+      else {
+        $(".filterItem").removeClass('active');
+        $("#tab51").addClass('show').siblings().removeClass('show');
+        $("#filterBg").css({"display":"block"});
+        $("body").css({"position":"fixed","width":"100%","height":"100%"});
+      }
+
+
+    });
+
+
+
+    $scope.HideList = function (element) {
+      $(".filterItem").removeClass('active');
+      $(element).removeClass("show");
       $("#filterBg").css({"display":"none"});
       $("body").css({"position":"static","width":"100%","height":"100%"});
-    };
+    }
+
+    $scope.customerOpen = false;
+    $scope.CustomerFilter = function () {
+      $scope.customerOpen = !$scope.customerOpen
+    }
+
+    $(".weui-flex__item").click(function () {
+      $(this).addClass('on').siblings().removeClass('on');
+    })
+
+
 
     $scope.CustomerList = [];
 
@@ -111,12 +114,15 @@ angular.module('wxWebApp')
     });
 
     $scope.SavePartner = function () {
-      var filterJson = {"jsonData":JSON.stringify($scope.PartnerInfo)};
-      ClientFactory.SetPartner(filterJson).then(function () {
-        $.toast("新增成功");
-        GetData(1);
+      if($scope.PartnerInfo.OrganizationName !=""){
+        var filterJson = {"jsonData":JSON.stringify($scope.PartnerInfo)};
+        ClientFactory.SetPartner(filterJson).then(function () {
+          $.toast("新增成功");
+          GetData(1);
 
-      });
+        });
+      }
+
     }
 
 
