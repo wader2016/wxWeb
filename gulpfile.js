@@ -159,8 +159,8 @@ gulp.task('client:build', ['bower', 'html', 'styles'], function () {
     .pipe(cssFilter)
     .pipe($.minifyCss({cache: true}))
     .pipe(cssFilter.restore())
-    // .pipe(rev())
-    // .pipe(revReplace())
+    .pipe(rev())
+    .pipe(revReplace())
     .pipe(gulp.dest(yeoman.dist));
 });
 gulp.task('html', function () {
@@ -181,7 +181,7 @@ gulp.task('copy:extras', function () {
     .pipe(gulp.dest(yeoman.dist));
 });
 gulp.task('copy:fonts', function () {
-  return gulp.src('./bower_components/bootstrap/dist/fonts/**/*')
+  return gulp.src(['./bower_components/bootstrap/dist/fonts/**/*',yeoman.app + '/styles/fonts/**/*'])
     .pipe(gulp.dest(yeoman.dist + '/fonts'));
 });
 gulp.task('copy:favicon', function () {

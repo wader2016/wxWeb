@@ -1,45 +1,83 @@
 <div class="page" ng-controller="ClientdetailCtrl">
   <div class="weui-panel weui-panel_access">
-    <div class="weui-panel__bd" style="background-color: #445c95;color: #ffff">
-      <div class="weui-media-box weui-media-box_text" style="border-bottom: 1px solid #556a9e">
+    <div class="weui-panel__bd" style="background-color: #0aa0f9;color: #ffff">
+      <div class="weui-media-box weui-media-box_text" style="border-bottom: 1px solid #0da5f3">
         <h3 style="font-size: 24px" class="weui-media-box__title" ng-bind="customerItem.Abbr"></h3>
-        <p class="weui-media-box__desc" style="color: #b2bdd3;margin: 10px 0">联系人: <span ng-bind="customerItem.ContactName"></span></p>
-        <p class="weui-media-box__desc" style="color: #b2bdd3;margin: 10px 0">
-          产品版本: <span ng-bind="customerItem.ProductInfo"></span>
-          <span style="margin-left: 15px">人版数: <span ng-bind="customerItem.Licenses"></span></span>
+        <p class="weui-media-box__desc" style="color: #ffff;margin: 10px 0">
+          <span ng-bind="customerItem.ContactName"></span>
+          <span style="margin-left: 5px"><a style="color:#ffff " href="tel:{{customerItem.TelNumber}}" ng-bind="customerItem.TelNumber"></a></span>
         </p>
-        <a style="float: right;position: absolute;top: 35%;right: 15px" href="#/client/clientDetailInfo"><img src="../../images/more.png" alt=""> </a>
+        <p class="weui-media-box__desc" style="color: #ffff;margin: 10px 0">
+          <span ng-bind="customerItem.ProductInfo"></span>
+          <span style="margin-left: 5px">人版数: <span ng-bind="customerItem.Licenses"></span></span>
+        </p>
+        <p class="weui-media-box__desc" style="color: #ffff;margin: 10px 0">
+          <span>业务人员: <span ng-bind="customerItem.BusinessStaff"></span></span>
+          <span style="margin-left: 5px">服务人员: <span ng-bind="customerItem.ServiceStaff"></span></span>
+        </p>
+        <a style="float: right;position: absolute;top: 35%;right: 15px" href="#/client/clientDetailInfo">
+          <i class="fa fa-angle-right" style="font-size: 32px;color: #ffffff"></i>
+        </a>
       </div>
       <div>
       </div>
     </div>
-
-    <div class="weui-panel weui-panel_access" style="margin-bottom: 45px;margin-top: 0">
-      <div class="weui-panel__hd">洽谈记录 (<span ng-bind="AppointmentList.length"></span>)</div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box weui-media-box_text" ng-repeat="item in AppointmentList|orderBy:'Id':true" style="border-bottom: 1px solid #eee">
-          <h4 class="weui-media-box__title">
-           <span ng-bind="item.Subject"></span>
-            <a style="font-size: 10px;color: #7789ab;float: right;margin-top: 8px">
-              <span ng-bind="item.Staff"></span> <span ng-bind="item.StartTime"></span>
-            </a>
-          </h4>
-          <p class="weui-media-box__desc" ng-bind="item.Description"></p>
-          <div>
-            <span ng-bind="item.AppointmentType" style="border: 1px solid #eeeeee;padding: 0 10px;display:inline-block;margin-top:15px;margin-bottom:-5px;border-radius: 10px;width: auto;font-size: 12px;text-align: center;color: #999"></span>
-            <a ng-href="#/client/recordDetail/{{item.Id}}" style="width: 60px;float: right;margin-top: 18px;font-size: 12px;color: #999;position: relative">
-              <img src="../../images/comments.png" alt="">
-              <span style="display: inline-block;position: absolute;top: 0;margin-left: 5px;line-height: 16px">沟通</span>
+    <div class="weui-tab">
+      <div class="weui-navbar">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1" style="font-size: 15px;">
+          洽谈记录 (<span ng-bind="AppointmentList.length"></span>)
+        </a>
+        <a class="weui-navbar__item" href="#tab2" style="font-size: 15px;">
+          其他
+        </a>
+        <a class="weui-navbar__item">
+        </a>
+        <a class="weui-navbar__item">
+        </a>
+      </div>
+      <div class="weui-tab__bd" style="padding-top: 30px">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+          <div class="weui-panel weui-panel_access" style="margin-top: 0">
+            <div class="weui-panel__bd">
+              <div class="weui-media-box weui-media-box_text" ng-click="GotoDetail(item.Id)" ng-repeat="item in AppointmentList|orderBy:'Id':true" style="border-bottom: 1px solid #eee">
+                <h4 class="weui-media-box__title">
+                  <span ng-bind="item.Subject"></span>
+                  <a style="font-size: 10px;color: #7789ab;float: right;margin-top: 8px">
+                    <span ng-bind="item.Staff"></span> <span ng-bind="item.StartTime|DateFilter"></span>
+                  </a>
+                </h4>
+                <p class="weui-media-box__desc" ng-bind="item.Description"></p>
+                <div>
+                  <span ng-bind="item.AppointmentType" style="border: 1px solid #eeeeee;padding: 0 10px;display:inline-block;margin-top:15px;margin-bottom:-5px;border-radius: 10px;width: auto;font-size: 12px;text-align: center;color: #999"></span>
+                  <a style="width: 60px;float: right;margin-top: 13px;font-size: 12px;color: #999;position: relative">
+                    <i class="fa fa-commenting-o"></i>
+                    <span style="display: inline-block;position: absolute;top: 0;margin-left: 5px;line-height: 22px">沟通</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="width: 60px;height: 60px;border-radius: 50%;background-color:#0da5f3;position: fixed;bottom: 15px;left:42%;">
+            <a href="#/client/AddRecord" style="color: #ffffff;display: inline-block">
+              <!--<i style="font-size: 30px" class="fa fa-plus"></i>-->
+              <img src="../../images/img-add.png" style="padding: 14px;" alt="">
             </a>
           </div>
+          <!--<div class="weui-footer weui-footer_fixed-bottom" style="bottom: 0">-->
+            <!--<a href="#/client/AddRecord" style="display:block;margin-left: auto;margin-right: auto;padding:10px 14px;box-sizing: border-box;font-size: 16px;text-align: center;border-radius: 0;background-color: #fafafa;color: #000;text-decoration: underline">-->
+              <!--添加洽谈记录 +</a>-->
+          <!--</div>-->
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+          <h1>其他</h1>
         </div>
       </div>
     </div>
-    <div class="weui-footer weui-footer_fixed-bottom" style="bottom: 0">
-      <a href="#/client/AddRecord" style="display:block;margin-left: auto;margin-right: auto;padding:10px 14px;box-sizing: border-box;font-size: 16px;text-align: center;border-radius: 0;background-color: #fafafa;color: #000;text-decoration: underline">
-        添加洽谈记录 +</a>
-    </div>
-
   </div>
 </div>
+<script>
+  $(".weui-navbar a").click(function (e) {
+    e.preventDefault();
+  })
+</script>
 

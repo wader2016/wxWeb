@@ -1,0 +1,40 @@
+<div class="page" ng-controller="LoginCtrl">
+  <div style="height: 175px;position: relative">
+    <div class="img-background">
+      <div class="img-user">
+        <img ng-src="{{UserInfo.headimgurl}}" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="login-content">
+    <p>亲爱的<span ng-bind="UserInfo.nickname"></span></p>
+    <p>为了确保您的账户安全,请进行账号绑定</p>
+    <div class="weui-cells">
+      <div class="weui-cell" style="border-bottom: 1px solid #d0d2d0;">
+        <div class="weui-cell__hd">
+          <i class="fa fa-envelope" style="color: #888;margin-right: 15px"></i>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" ng-model="LoginUser.Email" type="email" placeholder="请输入邮箱">
+        </div>
+      </div>
+      <div class="weui-cell" style="border-bottom: 1px solid #d0d2d0;">
+        <div class="weui-cell__hd">
+          <i class="fa fa-key" style="color: #888;margin-right: 15px"></i>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" type="password" ng-model="LoginUser.Password" placeholder="请输入密码">
+        </div>
+      </div>
+      <a ng-click="BindUser()" class="weui-btn weui-btn_warn" style="margin-top: 30px">完成绑定</a>
+      <!--<a href="" style="float: right;margin-top: 15px;text-decoration: underline;color: #E64340">绑定已有账号</a>-->
+    </div>
+
+    <div style="font-size: 13px;color: #888;padding: 15px">注册绑定账号后即代表 您已同意
+      <a style="text-decoration: underline;color: #E64340">ITEC用户协议</a>
+     <div/>
+
+  </div>
+
+</div>
+</div>

@@ -18,16 +18,16 @@
 
         <div class="weui-textarea-counter"  style="text-align: left;">
           <img ng-src="{{item}}" ng-repeat="item in ChoseImgSrc" ng-if="ChoseImgSrc.length>0" alt="" style="height: 32px;">
-          <img src="../../images/pic.png" ng-if="ChoseImgSrc.length==0" style="width: 32px" ng-click="ShowPic()">
+          <i class="fa fa-picture-o" ng-if="ChoseImgSrc.length==0" style="font-size: 30px" ng-click="ShowPic()"></i>
           <img src="../../images/addPic.png" ng-if="ChoseImgSrc.length>0" style="width: 32px"  ng-click="ShowPic()">
         </div>
       </div>
     </div>
     <a class="weui-cell weui-cell_link">
       <div class="weui-cell__bd" style="font-size: 12px;">
-        <img src="../../images/location.png" alt="">
+        <i class="fa fa-map-marker"></i>
         <span ng-bind="Location"></span>
-        <span ng-bind="DateNow"></span>
+        <span ng-bind="DateNow|DateFilter"></span>
       </div>
     </a>
   </div>
@@ -64,12 +64,12 @@
     </div>
   </div>
   <div class="record-footer" style="position: fixed;bottom: 0;width: 100%;background-color: #FFFFFF">
-    <div class="weui-flex">
-      <div class="weui-flex__item">
-        <a class="itemArea" ng-click="GetBack()">关闭</a>
+    <div class="weui-flex" style="margin: 0">
+      <div class="weui-flex__item" style="padding: 0">
+        <a class="itemArea" ng-click="GetBack()" style="height: 45px;border: none">关闭</a>
       </div>
-      <div class="weui-flex__item">
-        <a class="itemArea" style="background-color: #E64340;color: #ffffff" ng-click="AddAppointment()">确定</a>
+      <div class="weui-flex__item" style="padding: 0">
+        <a class="itemArea" style="background-color: #E64340;color: #ffffff;height: 45px;border: none" ng-click="AddAppointment()">确定</a>
       </div>
     </div>
   </div>

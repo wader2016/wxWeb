@@ -22,6 +22,7 @@
     <!-- build:css(.tmp) stypremain.css.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/common/jquery-weui.min.css">
+    <link rel="stylesheet" href="styles/common/font-awesome.min.css">
     <!--<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">-->
     <!-- endbuild -->
   </head>
@@ -65,6 +66,7 @@
     <script src="scripts/controllers/cilentinfo.js"></script>
     <script src="scripts/controllers/addrecord.js"></script>
     <script src="scripts/controllers/addclient.js"></script>
+    <script src="scripts/controllers/login.js"></script>
     <!-- endbuild -->
     <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script>
@@ -92,6 +94,17 @@
           event.preventDefault(); //阻止触摸事件的默认行为，即阻止滚屏
         }
       }, false);
+
+      $(function () {
+        //微信内置浏览器浏览H5页面弹出的键盘遮盖文本框的解决办法
+        window.addEventListener("resize", function () {
+          if (document.activeElement.tagName == "INPUT" || document.activeElement.tagName == "TEXTAREA") {
+            window.setTimeout(function () {
+              document.activeElement.scrollIntoViewIfNeeded();
+            }, 100);
+          }
+        })
+      })
     </script>
 </body>
 </html>

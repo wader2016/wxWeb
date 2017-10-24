@@ -1,4 +1,4 @@
-<div class="page" ng-controller="CilentinfoCtrl" style="background-color: #fafafa;">
+<div class="page" ng-controller="CilentinfoCtrl" style="background-color: #fafafa;overflow-y: scroll">
   <div class="weui-cells__title" style="font-size: 14px;color: #444"><i style="width: 1px;height:14px;margin-right: 6px;border-left: 2px solid #fd521d"></i>客户信息</div>
   <div class="weui-cells weui-cells_form">
     <div class="weui-cell">
@@ -48,7 +48,7 @@
     </div>
   </div>
   <div class="weui-cells__title" style="font-size: 14px;color: #444"><i style="width: 1px;height:14px;margin-right: 6px;border-left: 2px solid #fd521d"></i>产品信息</div>
-  <div class="weui-cells weui-cells_form" style="margin-bottom: 65px">
+  <div class="weui-cells weui-cells_form" style="margin-bottom: 48px">
     <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">负责业务</label></div>
       <div class="weui-cell__bd">
@@ -82,13 +82,13 @@
     </div>
 
   </div>
-  <div class="record-footer" style="position: fixed;bottom: 0;width: 100%;background-color: #FFFFFF;z-index: 1500">
-    <div class="weui-flex">
-      <div class="weui-flex__item">
-        <a class="itemArea" ng-click="GetBack()">返回</a>
+  <div class="record-footer" style="position: fixed;bottom: 0;width: 100%;background-color: #FFFFFF;z-index: 1200">
+    <div class="weui-flex" style="margin: 0">
+      <div class="weui-flex__item" style="padding: 0">
+        <a class="itemArea" ng-click="GetBack()" style="height: 45px;border: none">返回</a>
       </div>
-      <div class="weui-flex__item">
-        <a class="itemArea" ng-click="UpdateClientInfo()" style="background-color: #E64340;color: #ffffff">确定</a>
+      <div class="weui-flex__item" style="padding: 0">
+        <a class="itemArea" ng-click="UpdateClientInfo()" style="background-color: #E64340;color: #ffffff;height: 45px;border: none;">确定</a>
       </div>
     </div>
   </div>

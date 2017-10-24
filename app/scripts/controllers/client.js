@@ -8,7 +8,7 @@
  * Controller of the wxWebApp
  */
 angular.module('wxWebApp')
-  .controller('ClientCtrl', function ($scope,ClientFactory,$location,localStorageService,$timeout) {
+  .controller('ClientCtrl', function ($scope,ClientFactory,$location,localStorageService,$filter) {
 
     $(".filterItem").click(function (e) {
       e.preventDefault();
@@ -39,9 +39,26 @@ angular.module('wxWebApp')
         $("#filterBg").css({"display":"block"});
         $("body").css({"position":"fixed","width":"100%","height":"100%"});
       }
-
-
     });
+
+
+    $scope.SearchList = [];
+
+    $scope.Search = function (e) {
+     if(e.target.value !=""){
+       GetDataBySearching(0,e.target.value);
+     }
+     else {
+       GetDataBySearching(1,e.target.value);
+     }
+    }
+
+    $scope.CancelSearch = function () {
+      $scope.SearchList = [];
+      $("#tab51").removeClass('show');
+      $("#filterBg").css({"display":"none"});
+      $("body").css({"position":"static","width":"100%","height":"100%"});
+    }
 
 
 
@@ -52,92 +69,64 @@ angular.module('wxWebApp')
       $("body").css({"position":"static","width":"100%","height":"100%"});
     }
 
-    $scope.customerOpen = false;
-    $scope.CustomerFilter = function () {
-      $scope.customerOpen = !$scope.customerOpen
+    $scope.customerOpen = 1;
+    $scope.FilterTitle = "常联系客户";
+    $scope.CustomerFilter = function (flag) {
+      $scope.ProductFilterList = [];
+      $scope.customerOpen = flag;
+      if (flag==0){
+        $scope.FilterTitle = "不限客户";
+      }
+      else {
+        $scope.FilterTitle = "常联系客户";
+      }
     }
 
+
+
     $(".weui-flex__item").click(function () {
+      $(".weui-flex__item").removeClass('on');
       $(this).addClass('on').siblings().removeClass('on');
     })
 
+    $scope.ProductVersion = [{"Id":"1000","Nick":"I-完美版"},{"Id":"1001","Nick":"T-旗舰版"},{"Id":"1002","Nick":"E-企业版"},{"Id":"1003","Nick":"C-经典版"}];
+
+    $scope.TypeItem = [];
+    ClientFactory.GetAppointmentDropdownList({"filterJson":{"DropdownList":"Staff"}}).then(function (data) {
+      $scope.StaffInfo = data;
+      for(var i = 0;i<data.length;i++){
+        $scope.TypeItem.push(data[i].Name);
+      }
+    });
+
+    $scope.ProductFilterList = [];
+
+    $scope.ProductFilter = function (flag) {
+      $scope.customerOpen = flag;
+      if (flag == 2){
+        $scope.FilterTitle = "产品版本";
+        $scope.ProductFilterList  = $scope.ProductVersion;
+      }
+      else if (flag == 3){
+        $scope.FilterTitle = "业务人员";
+        $scope.ProductFilterList = $filter('FilterStaff')($scope.StaffInfo,0);
+      }
+      else if (flag == 4){
+        $scope.FilterTitle = "服务人员";
+        $scope.ProductFilterList = $filter('FilterStaff')($scope.StaffInfo,1);
+      }
+
+    }
 
 
     $scope.CustomerList = [];
 
     GetData(1);
 
-   $scope.PartnerInfo =  {
-     "ACTIONCODE":"A"
-    ,"OrganizationId":""
-    ,"OrganizationListId":""
-    ,"OrganizationCode":""
-    ,"OrganizationName":""
-    ,"OrganizationAbbr":""
-    ,"ContactName":""
-    ,"ContactCode":""
-    ,"Email":""
-    ,"TelNumber":""
-    ,"ProductInfo":""
-    ,"ContractDeadline":""
-    ,"BusinessStaff":""
-    ,"ServiceStaff":""
-    ,"Licenses":""
-    ,"ContactId":""
-    ,"BusinessStaffId":""
-    ,"ServiceStaffId":""
-   }
-
     $scope.CustomerDetail = function (item) {
       localStorageService.set("customerItem",item);
       $location.path("/client/clientDetail/"+item.Id);
     };
-
-    $scope.TypeItem = [];
-    ClientFactory.GetAppointmentDropdownList({"filterJson":{"DropdownList":"Staff"}}).then(function (data) {
-     $scope.StaffInfo = data;
-      for(var i = 0;i<data.length;i++){
-        $scope.TypeItem.push(data[i].Name);
-      }
-    });
-
-    $scope.$watch("PartnerInfo.BusinessStaff",function (newVal) {
-      if(newVal){
-        $scope.PartnerInfo.BusinessStaffId = FilterByName($scope.StaffInfo,newVal);
-      }
-    });
-
-    $scope.$watch("PartnerInfo.ServiceStaff",function (newVal) {
-      if(newVal){
-        $scope.PartnerInfo.ServiceStaffId = FilterByName($scope.StaffInfo,newVal);
-      }
-    });
-
-    $scope.SavePartner = function () {
-      if($scope.PartnerInfo.OrganizationName !=""){
-        var filterJson = {"jsonData":JSON.stringify($scope.PartnerInfo)};
-        ClientFactory.SetPartner(filterJson).then(function () {
-          $.toast("新增成功");
-          GetData(1);
-
-        });
-      }
-
-    }
-
-
-    $timeout(function () {
-      $(".businessPicker").picker({
-        title: "请选择洽谈类型",
-        cols: [
-          {
-            textAlign: 'center',
-            values: $scope.TypeItem
-          }
-        ]
-      });
-    },1000);
-
 
     function GetData(pageIndex) {
     var filter = {
@@ -189,13 +178,6 @@ angular.module('wxWebApp')
       });
     }
 
-    function FilterByName(array,name) {
-      for(var i = 0;i<array.length;i++){
-        if(array[i].Name == name){
-          return array[i].Id
-        }
-      }
-    }
 
      $(document.body).infinite(50);
     var index = 1;
@@ -214,9 +196,5 @@ angular.module('wxWebApp')
         loading = false;
       }, 1500);   //模拟延迟
     });
-
-
-
-
 
   });

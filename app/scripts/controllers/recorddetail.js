@@ -12,9 +12,7 @@ angular.module('wxWebApp')
 
     $scope.accountInfo = localStorageService.get("AccountInfo");
 
-
     var filter = {"appointmentId":$stateParams.Id};
-
 
     ClientFactory.GetAppointmentDetail(filter).then(function (data) {
       $scope.AppointmentDetail = data.AppointmentInfo[0];

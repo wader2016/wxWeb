@@ -8,7 +8,7 @@
  * Controller of the wxWebApp
  */
 angular.module('wxWebApp')
-  .controller('ClientdetailCtrl', function ($scope,$stateParams,ClientFactory,localStorageService) {
+  .controller('ClientdetailCtrl', function ($scope,$stateParams,ClientFactory,localStorageService,$location) {
 
     $scope.customerItem = localStorageService.get("customerItem");
 
@@ -29,5 +29,7 @@ angular.module('wxWebApp')
       $scope.AppointmentList = data.TalkRecordInfo;
     });
 
-
+    $scope.GotoDetail = function (Id) {
+      $location.path("/client/recordDetail/"+Id).replace();
+    };
   });

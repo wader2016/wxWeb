@@ -15,7 +15,7 @@
         </p>
         <p class="weui-media-box__desc" style="margin-top: 10px;">
           <span ng-if="AppointmentDetail.NextSubject !=null">预计下次主题:{{AppointmentDetail.NextSubject}}</span>
-          <span ng-if="AppointmentDetail.NextDate !=null" ng-bind="AppointmentDetail.NextDate"></span>
+          <span ng-if="AppointmentDetail.NextDate !=null" ng-bind="AppointmentDetail.NextDate|DateFilter"></span>
         </p>
 
         <div style="font-size: 12px;margin-top: 10px;color: #7789ab">
@@ -37,7 +37,7 @@
               <p style="font-size: 10px;color:#388bd1;text-decoration: underline" ng-bind="item.CreatedBy"></p>
               <p ng-bind="item.Comments"></p>
             </div>
-            <span style="font-size: 12px;color: #999;margin-left: 5px" ng-bind="item.CreatedDate"></span>
+            <span style="font-size: 12px;color: #999;margin-left: 5px" ng-bind="item.CreatedDate|DateFilter"></span>
           </a>
         </div>
       </div>

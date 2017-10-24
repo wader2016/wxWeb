@@ -34,7 +34,7 @@ app.run(function ($http,$window,$location,localStorageService,$timeout,ClientFac
     getUser : function(code) {
       $.ajax({
         type: 'get',
-        url: "http://www.itecerp.cn:8000/api/openId?code="+code,
+        url: "http://www.itecerp.cn/wxApi/api/openId?code="+code,
         cache:false,
         async: false,
         dataType: 'jsonp',
@@ -69,7 +69,7 @@ app.run(function ($http,$window,$location,localStorageService,$timeout,ClientFac
 
   $timeout(function () {
     var url =$location.$$absUrl.split("#")[0];
-    $http.post("http://www.itecerp.cn:8000/api/AccessToken",{"url":url}).then(function (res) {
+    $http.post("http://www.itecerp.cn/wxApi/api/AccessToken",{"url":url}).then(function (res) {
       $window.wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: 'wx7c76be40f55d7c02',  // 必填，公众号的唯一标识
@@ -88,29 +88,25 @@ app.run(function ($http,$window,$location,localStorageService,$timeout,ClientFac
           "scanQRCode"                // 调起微信扫一扫接口
         ]                             // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       });
+
+      // 获取用户信息
+      ClientFactory.GetAccountInfo({"openId":localStorageService.get('MY_USER_INFO').openid}).then(function (data) {
+        if(data[0].ContactId == 0){
+          $location.path("/login");
+        }
+        else {
+          $location.path("/client/clientInfo");
+          localStorageService.set("AccountInfo",data[0]);
+        }
+
+      });
+
     })
 
     wx.error(function(res){
       console.log("微信JS-SDK获取失败");
     });
-  },500);
-
-  $timeout(function () {
-    // 用户登录
-    var info = {
-      "openId":localStorageService.get('MY_USER_INFO').openid,
-      "name":localStorageService.get('MY_USER_INFO').nickname,
-      "type":"wx"
-    };
-
-    ClientFactory.SetAccount(info);
-
-    // 获取用户信息
-    ClientFactory.GetAccountInfo({"openId":localStorageService.get('MY_USER_INFO').openid}).then(function (data) {
-      localStorageService.set("AccountInfo",data[0]);
-    });
-
-  },1000);
+  },200);
 
 })
 
@@ -124,7 +120,7 @@ app.run(["$rootScope", "$state", function($rootScope,$state) {
 /* Setup Rounting For All Pages */
 app.config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider,$locationProvider) {
   $locationProvider.hashPrefix("");
-  $urlRouterProvider.otherwise("/client/clientInfo");
+  $urlRouterProvider.otherwise("/login");
   $stateProvider
     // .state('main',{
     //   url:'/main',
@@ -198,6 +194,10 @@ app.config(['$stateProvider', '$urlRouterProvider','$locationProvider', function
     //   templateUrl:'views/account.html',
     //   data: {pageTitle: '个人设置'}
     // })
+    .state('login',{
+      url:'/login',
+      templateUrl:'views/login.html'
+    })
     .state('client',{
       url:'/client/clientInfo',
       templateUrl:'views/client/clientInfo.html',
